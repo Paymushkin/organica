@@ -1,0 +1,162 @@
+.news {
+  position: relative;
+  padding: 64px 0;
+
+  &__decoration {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  &__title {
+    margin-bottom: 32px;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  // Обёртка-слайдер: на десктопе ведём себя как сетка, на мобильных будет инициализироваться Swiper
+  &__slider {
+    .swiper { 
+      width: 100%; 
+      height: auto; 
+      overflow: visible; // Важно, чтобы на десктопе не было обрезки
+    }
+    
+    // На десктопе (>768px) используем grid без Swiper
+    .swiper-wrapper {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      width: 100%;
+    }
+    
+    .swiper-slide { 
+      height: auto;
+      width: 100%; // на десктопе grid сам управляет шириной
+    }
+
+    @media (max-width: 1024px) {
+      .swiper-wrapper { 
+        grid-template-columns: repeat(2, 1fr); 
+      }
+    }
+    
+    // На мобильных (<=768px) Swiper сам переопределит на flex
+    @media (max-width: 768px) {
+      .swiper { overflow: hidden; } // включаем overflow для Swiper
+      .swiper-wrapper { 
+        display: flex !important; // принудительно flex когда Swiper активен
+        gap: 0;
+      }
+      .swiper-slide {
+        width: auto; // Swiper сам будет управлять шириной
+        flex-shrink: 0;
+      }
+    }
+  }
+
+  // Модификации для навигации слайдера news (базовые стили уже в компоненте, модификатор --dark в Pug)
+  &__slider-nav {
+    display: none; // Скрыта на десктопе
+    justify-content: space-between;
+    margin-top: 24px;
+
+    @media (max-width: 768px) {
+      display: flex;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px;
+
+    @media (max-width: 768px) {
+    }
+  }
+
+  &__all {
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+  }
+}
+
+.news-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--color-bg-primary);
+  border-radius: 8px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform .2s ease;
+  will-change: transform;
+  transform-origin: center;
+
+  &__image {
+    width: 100%;
+    aspect-ratio: 386/236;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #eee;
+
+    img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  }
+
+  &__body { display: flex; flex-direction: column; gap: 10px; }
+
+  &__date {
+    color: var(--color-text-quaternary);
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    line-height: 120%;
+  }
+
+  &__text {
+    color: var(--color-primary-dark);
+    font-family: PT Sans, sans-serif;
+    font-size: 20px;
+    line-height: 1.2;
+    margin: 6px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    color: rgba(4, 63, 46, 0.50);
+    line-height: 1.2;
+    text-decoration: none;
+    transition: color .2s ease;
+
+    // Ховер применяется от всей карточки
+    .news-card:hover & { color: var(--color-primary-dark); }
+  }
+
+  &__chevron { display: inline-flex; }
+}
+
+// Увеличение карточки при наведении
+.news-card:hover {
+  @media (min-width: 768px) {
+    transform: scale(1.02);
+  }
+}
+

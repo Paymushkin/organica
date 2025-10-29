@@ -1,0 +1,140 @@
+/* Секция формы */
+.form-section {
+  padding: 64px 0;
+  
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 24px;
+    background: rgba(65, 143, 85, 0.10);
+    border-radius: 8px;
+  }
+
+  &__info {
+    flex: calc(50% - 12px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  &__form {
+    position: relative;
+    flex: calc(50% - 12px);
+  }
+
+  &__title {
+    margin: 0 0 24px;
+  }
+
+  &__list { 
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0; 
+  }
+
+  &__list-item { 
+    color: var(--color-text-primary); 
+    font-family: PT Sans, sans-serif;
+    font-size: 20px;
+    line-height: 1.2;
+    list-style: none;
+  }
+
+  &__subtitle {
+    margin-bottom: 8px;
+  }
+
+  &__desc {
+    margin-bottom: 24px;
+    color: var(--color-primary-dark);
+    line-height: 1.2;
+  }
+}
+
+.request-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__row {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__input {
+    width: 100%;
+  }
+
+  &__agree {
+    margin: 16px 0 24px;
+  }
+
+  &__submit {
+    align-self: flex-start;
+  }
+
+  &__logo {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+/* Кастомный чекбокс и подпись */
+.request-form__checkbox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  align-self: stretch;
+  color: rgba(4, 63, 46, 0.50);
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: 0.14px;
+}
+
+.request-form__checkbox > input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.request-form__checkbox > span {
+  align-items: center;
+  padding-left: 36px;
+  font-size: 14px;
+  letter-spacing: 0.14px;
+}
+
+.request-form__checkbox > span::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  border: 1px solid rgba(42, 111, 43, 0.40);
+  background: transparent;
+  box-sizing: border-box;
+}
+
+.request-form__checkbox > input:focus + span::before {
+  outline: 2px solid rgba(42, 111, 43, 0.30);
+  outline-offset: 2px;
+}
+
+.request-form__checkbox > input:checked + span::before {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='12' viewBox='0 0 16 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.5 6.5L6 11L14.5 1' stroke='%230E1A14' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}

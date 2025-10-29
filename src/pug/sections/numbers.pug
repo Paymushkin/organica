@@ -1,0 +1,32 @@
+//- Секция "Цифры компании"
+section.numbers
+  .container
+    .numbers__content
+      .numbers__text
+        h2.numbers__title Цифры компании 
+            br
+            | говорят сами за себя
+        a.numbers__button.btn.desktop-only(href="/about/") Подробнее о компании
+      
+      .numbers__stats
+        .numbers__stat
+          .numbers__stat-number 13 000
+          .numbers__stat-label Клиентов
+
+        .numbers__stat.numbers__stat--big
+          .numbers__stat-number 12 000+
+          .numbers__stat-label Позиций товара в наличии
+        
+        .numbers__stat.numbers__stat--special
+          span.numbers__stat-number 15 000 м²
+          .numbers__stat-label Площадь складов
+        
+        .numbers__stat.numbers__stat--small
+          .numbers__stat-number 120
+          .numbers__stat-label Собственных машин
+
+      a.numbers__button.btn.mobile-only(href="/about/") Подробнее о компании
+  
+  // Декоративная волна
+  .numbers__decoration
+    include ../icons/decor-wave

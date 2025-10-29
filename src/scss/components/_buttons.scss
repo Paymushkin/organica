@@ -1,0 +1,92 @@
+// Базовые стили кнопок
+.btn {
+  display: flex;
+  padding: 16px 32px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  color: var(--color-text-secondary);
+  background: #418F55;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  text-align: center;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  @media (max-width: 576px) {
+    padding: 16px 24px;
+  }
+  
+  
+  
+  // Hover эффекты
+  &:hover {
+    background: #3a7c4a;
+  }
+  
+  // Active состояние
+  &:active {
+    transform: translateY(0);
+    background: #2d5a27;
+  }
+  
+  // Focus состояние
+  &:focus {
+    outline: 2px solid #418F55;
+    outline-offset: 2px;
+  }
+  
+  // Disabled состояние
+  &:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    
+    &:hover {
+      background: #ccc;
+      transform: none;
+    }
+  }
+
+  // Прозрачная кнопка с границей
+  &--outline {
+    background: transparent;
+    border: 1px solid var(--color-border-primary);
+    color: var(--color-border-primary);
+
+    &:hover {
+      background: var(--color-border-primary);
+      color: white;
+    }
+
+    &:active {
+      background: var(--color-border-primary);
+      color: white;
+    }
+
+    &:focus {
+      outline: 2px solid var(--color-border-primary);
+      outline-offset: 2px;
+    }
+
+    &:disabled {
+      background: transparent;
+      border-color: #ccc;
+      color: #ccc;
+      cursor: not-allowed;
+      
+      &:hover {
+        background: transparent;
+        border-color: #ccc;
+        color: #ccc;
+      }
+    }
+  }
+}
+
+
+
+

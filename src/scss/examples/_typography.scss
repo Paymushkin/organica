@@ -1,0 +1,88 @@
+/* Примеры типографики */
+
+// Заголовки
+.heading-1 {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+}
+
+.heading-3 {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+}
+
+.heading-4 {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+}
+
+// Тексты
+.text-large {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-text-large);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+}
+
+.text-normal {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-text);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+}
+
+.text-secondary {
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-text);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+}
+
+// Контейнер
+.container {
+  @include container();
+}
+
+// Адаптивные размеры шрифтов (для мобильных устройств)
+@media (max-width: 768px) {
+  .heading-1 {
+    font-size: 48px; // Уменьшаем для мобильных
+  }
+
+  
+  .heading-3 {
+    font-size: 24px;
+  }
+  
+  .heading-4 {
+    font-size: 20px;
+  }
+  
+  .text-large {
+    font-size: 18px;
+  }
+  
+  .text-normal {
+    font-size: 14px;
+  }
+}
+
+
+
+
+
+
+
+

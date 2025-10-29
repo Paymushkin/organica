@@ -1,0 +1,83 @@
+/* Секция Партнёры */
+.partners {
+  padding: 64px 0;
+
+  &__title {
+    margin-bottom: 32px;
+  }
+
+  &__row-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  &__row {
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+    padding: 12px 0;
+  }
+
+  &__track {
+    display: flex;
+    width: max-content;
+    gap: 44px;
+    align-items: center;
+    animation-duration: 60s; /* медленнее */
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
+  }
+
+  &__row--top &__track { animation-name: partners-marquee-right; }
+  &__row--bottom &__track { animation-name: partners-marquee-left; }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+  }
+
+  &__item { flex: 0 0 auto; }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    color: inherit;
+    transition: opacity 0.2s ease;
+
+    &:hover .partners__logo { opacity: 1; }
+  }
+
+  &__logo {
+    display: inline-flex;
+    align-items: center;
+    height: 24px;
+    width: auto;
+    opacity: 0.5; /* базовая полупрозрачность */
+    transition: opacity 0.3s ease;
+
+    svg { height: 24px; width: auto; display: block; }
+
+    /* Постоянный цвет логотипов */
+    svg path, svg [fill] {
+      fill: rgba(42, 111, 43, 1);
+      stroke: rgba(42, 111, 43, 1);
+    }
+  }
+}
+
+/* Анимации вынесены отдельно */
+@keyframes partners-marquee-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes partners-marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+
+

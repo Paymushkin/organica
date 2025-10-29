@@ -1,0 +1,44 @@
+//- Компонент карточки с SVG формой
+mixin shape-card(title, description, icon)
+  .shape-card
+    .shape-card-content
+      if icon
+        .shape-card__icon
+          +#{icon}()
+      h3.shape-card__title= title
+      p.shape-card__description= description
+
+//- Вариант с градиентом
+mixin shape-card-gradient(title, description, icon)
+  .shape-card-gradient
+    .shape-card-content
+      if icon
+        .shape-card__icon
+          +#{icon}()
+      h3.shape-card__title= title
+      p.shape-card__description= description
+
+//- Вариант с тенью
+mixin shape-card-shadow(title, description, icon)
+  .shape-card-shadow
+    .shape-card-content
+      if icon
+        .shape-card__icon
+          +#{icon}()
+      h3.shape-card__title= title
+      p.shape-card__description= description
+
+//- Вариант с clip-path
+mixin shape-card-clip(title, description, icon)
+  .shape-card-clip
+    .shape-card-content
+      if icon
+        .shape-card__icon
+          +#{icon}()
+      h3.shape-card__title= title
+      p.shape-card__description= description
+
+
+
+
+

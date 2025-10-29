@@ -1,0 +1,35 @@
+//- Секция контактов
+section.contact
+  .container
+    .contact__content
+      .contact__info
+        h2.contact__title Свяжитесь с нами
+        p.contact__description Готовы обсудить ваш проект? Мы всегда рады новым клиентам!
+        
+        .contact__details
+          .contact__item
+            strong Телефон:
+            a(href="tel:+71234567890") +7 (123) 456-78-90
+          .contact__item
+            strong Email:
+            a(href="mailto:info@organica.ru") info@organica.ru
+          .contact__item
+            strong Адрес:
+            span г. Москва, ул. Примерная, д. 123
+      
+      .contact__form
+        form.form(action="#" method="POST")
+          .form__group
+            label.form__label(for="name") Имя
+            input.form__input(type="text" id="name" name="name" required)
+          
+          .form__group
+            label.form__label(for="email") Email
+            input.form__input(type="email" id="email" name="email" required)
+          
+          .form__group
+            label.form__label(for="message") Сообщение
+            textarea.form__textarea(id="message" name="message" rows="5" required)
+          
+          button.btn.btn--primary(type="submit") Отправить сообщение
+

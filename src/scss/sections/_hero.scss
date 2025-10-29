@@ -1,0 +1,148 @@
+/* Секция Hero */
+.hero {
+  position: relative;
+  min-height: 100vh; // Учитываем высоту фиксированного header
+  display: flex;
+  justify-content: flex-start;
+  overflow: hidden;
+  margin-top: -80px; // Компенсируем padding-top у body
+  padding: 200px 0 80px; // Добавляем обратно отступ для контента
+
+  &__decoration {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    justify-content: space-between;
+    align-items: flex-start;
+    min-width: 100%;
+    height: 100%;
+    padding: 0 16px;
+    margin: 0;
+  }
+
+  &__text {
+    max-width: 600px;
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+    width: 100%;
+  }
+
+  &__title {
+    font-size: 72px;
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--color-text-secondary);
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+
+    @media (max-width: 768px) {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+  }
+
+  &__description {
+    color: var(--color-text-secondary);
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -2px;
+    font-feature-settings: 'liga' off, 'clig' off;
+  }
+
+  &__stats {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__stat {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: flex-end;
+    padding: 16px 12px;
+    background: var(--color-primary-transparent);
+    border-radius: 8px;
+  }
+
+  &__stat-number {
+    color: var(--color-text-secondary);
+    font-size: 46px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -1.38px;
+  }
+
+  &__stat-label {
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    line-height: 1.2;
+  }
+
+  // Слайдер на фоне
+  &__slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+
+    .swiper {
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+    }
+
+    .swiper-slide {
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      will-change: opacity;
+    }
+
+    // Более мягкий fade у Swiper
+    .swiper.swiper-fade .swiper-slide {
+      transition-timing-function: ease;
+    }
+  }
+
+  &__slide-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+  }
+
+  // Модификации для навигации слайдера hero (базовые стили уже в компоненте)
+  &__slider-nav {
+    @media (max-width: 768px) {
+      bottom: 20px;
+    }
+  }
+}

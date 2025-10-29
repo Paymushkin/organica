@@ -1,0 +1,61 @@
+//- Базовый шаблон
+doctype html
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    
+    //- SEO мета-теги
+    title= pageTitle || 'Органика - Главная'
+    meta(name="description" content=pageDescription || 'Современная верстка для Битрикс')
+    meta(name="keywords" content=pageKeywords || 'битрикс, верстка, разработка')
+    
+    //- Open Graph
+    meta(property="og:title" content=pageTitle || 'Органика - Главная')
+    meta(property="og:description" content=pageDescription || 'Современная верстка для Битрикс')
+    meta(property="og:type" content="website")
+    meta(property="og:url" content=pageUrl || '')
+    meta(property="og:image" content=pageImage || '')
+    
+    //- Twitter Card
+    meta(name="twitter:card" content="summary_large_image")
+    meta(name="twitter:title" content=pageTitle || 'Органика - Главная')
+    meta(name="twitter:description" content=pageDescription || 'Современная верстка для Битрикс')
+    meta(name="twitter:image" content=pageImage || '')
+    
+    //- Дополнительные мета-теги
+    meta(name="robots" content="index, follow")
+    meta(name="author" content="Органика")
+    link(rel="canonical" href=pageUrl || '')
+    
+    //- Фавиконки
+    link(rel="icon" type="image/x-icon" href="/favicon.ico")
+    link(rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png")
+    link(rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png")
+    link(rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png")
+    
+    //- Стили
+    link(rel="stylesheet" href="css/main.css")
+    
+    //- Предзагрузка критических ресурсов
+    link(rel="preload" href="fonts/main.woff2" as="font" type="font/woff2" crossorigin)
+    
+    //- Дополнительные стили для конкретной страницы
+    if pageStyles
+      each style in pageStyles
+        link(rel="stylesheet" href=style)
+  
+  body(class=bodyClass || '')
+    //- Основной контент
+    main.main
+      block content
+    
+    //- Скрипты
+    script(src="js/main.js" defer)
+    
+    //- Дополнительные скрипты для конкретной страницы
+    if pageScripts
+      each script in pageScripts
+        script(src=script defer)
+

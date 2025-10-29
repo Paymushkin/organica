@@ -1,0 +1,142 @@
+// Переиспользуемые стили для навигации слайдера (стрелки, каунтер, прогресс-бар)
+
+// Навигация слайдера
+.slider-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  z-index: 3;
+
+  @media (max-width: 768px) {
+    gap: 16px;
+  }
+}
+
+// Счетчик слайдов
+.slider-counter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: PT Sans, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-text-secondary);
+
+  &--dark {
+    color: var(--color-primary-dark);
+  }
+}
+
+.slider-current-slide {
+  min-width: 24px;
+}
+
+.slider-total-slides {
+  color: rgba(231, 235, 234, 0.50);
+  min-width: 24px;
+
+  .slider-counter--dark & {
+    color: rgba(4, 63, 46, 0.50);
+  }
+}
+
+// Прогресс-бар
+.slider-progress {
+  width: 23px;
+  height: 1px;
+  position: relative;
+  background: rgba(231, 235, 234, 0.50);
+
+  &--dark {
+    background: rgba(4, 63, 46, 0.30);
+  }
+}
+
+.slider-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--color-text-secondary);
+  transition: width 0.05s linear;
+  position: relative;
+
+  &--dark {
+    background: var(--color-primary-dark);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: var(--color-text-secondary);
+    opacity: 0.8;
+  }
+
+  &--dark::after {
+    background: var(--color-primary-dark);
+  }
+}
+
+// Кнопки навигации
+.slider-buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.slider-btn {
+  width: 50px;
+  height: 50px;
+  border: 1px solid var(--color-text-secondary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+
+  &--dark {
+    border-color: var(--color-primary-dark);
+    color: var(--color-primary-dark);
+
+    &:hover {
+      background: rgba(42, 111, 43, 0.1);
+      border-color: var(--color-primary);
+      color: var(--color-primary); // стрелка наследует currentColor
+    }
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--color-primary);
+    color: var(--color-primary); // стрелка наследует currentColor
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  &--dark svg {
+    width: 16px;
+    height: 12px;
+  }
+
+  &--disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    
+    &:hover {
+      transform: none;
+    }
+  }
+}

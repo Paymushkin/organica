@@ -1,0 +1,134 @@
+// Декоративные элементы
+.decor {
+  display: inline-block;
+  vertical-align: middle;
+  
+  // Общие стили для всех декоративных элементов
+  &-wave {
+    color: #D4DDD8;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+    
+    &:hover {
+      opacity: 1;
+    }
+  }
+  
+  &-circle {
+    color: #4a7c59;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      opacity: 0.8;
+      transform: rotate(5deg);
+    }
+  }
+  
+  &-dots {
+    color: #2d5a27;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+    
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+  
+  &-lines {
+    color: #D4DDD8;
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+    
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+// Позиционирование декоративных элементов
+.decorations {
+  position: relative;
+  
+  &__top-left {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1;
+  }
+  
+  &__top-right {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1;
+  }
+  
+  &__bottom-left {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1;
+  }
+  
+  &__bottom-right {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1;
+  }
+  
+  &__center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+}
+
+// Адаптивность для декоративных элементов
+@media (max-width: 768px) {
+  .decor {
+    // Уменьшаем размер декоративных элементов на мобильных
+    &-wave {
+      width: 150px !important;
+      height: auto !important;
+    }
+    
+    &-circle {
+      width: 60px !important;
+      height: 60px !important;
+    }
+    
+    &-dots {
+      width: 80px !important;
+      height: 80px !important;
+    }
+    
+    &-lines {
+      width: 120px !important;
+      height: 120px !important;
+    }
+  }
+  
+  .decorations {
+    &__top-left,
+    &__top-right,
+    &__bottom-left,
+    &__bottom-right {
+      top: 10px;
+      right: 10px;
+      left: 10px;
+      bottom: 10px;
+    }
+  }
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,46 @@
+//- Секция Hero
+section.hero
+  .hero__decoration
+    include ../icons/decor-wave2
+  .container
+    .hero__content
+      .hero__text
+        h1.hero__title Компания <br>«Органика»
+        p.hero__description
+          | Более 25 лет надёжных поставок товаров<br>для здоровья и красоты
+      
+      .hero__bottom
+        // Навигация слайдера
+        .slider-nav.hero__slider-nav
+            .slider-counter.hero__slider-counter
+                span.slider-current-slide.hero__current-slide 01
+                .slider-progress.hero__slider-progress
+                    .slider-progress-bar.hero__slider-progress-bar
+                span.slider-total-slides.hero__total-slides 03
+            .slider-buttons.hero__slider-buttons
+                button.slider-btn.hero__slider-btn.hero__slider-btn--prev(type="button" aria-label="Предыдущий слайд")
+                    include ../icons/icon-arrow-left
+                button.slider-btn.hero__slider-btn.hero__slider-btn--next(type="button" aria-label="Следующий слайд")
+                    include ../icons/icon-arrow-right
+      
+        .hero__stats
+            .hero__stat
+                .hero__stat-number 6500
+                .hero__stat-label Юридических лиц среди клиентов
+            .hero__stat
+                .hero__stat-number 12 000+
+                .hero__stat-label Позиций товара в наличии
+        
+  // Слайдер на фоне
+  .hero__slider
+    .swiper
+      .swiper-wrapper
+        .swiper-slide
+          .hero__slide-content
+            img(src="images/hero/slide-1.png" alt="Фармацевтика" loading="lazy")
+        .swiper-slide
+          .hero__slide-content
+            img(src="images/hero/slide-2.png" alt="Медицинские препараты" loading="lazy")
+        .swiper-slide
+          .hero__slide-content
+            img(src="images/hero/slide-3.png" alt="Доставка лекарств" loading="lazy")

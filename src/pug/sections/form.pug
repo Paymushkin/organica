@@ -1,0 +1,35 @@
+//- Секция с формой заявки
+section.form-section
+  .container
+    .form-section__inner
+      // Левая колонка — заголовок и преимущества
+      .form-section__info
+        h2.form-section__title Кто уже доверяет<br>«Органике»?
+        ul.form-section__list
+          li.form-section__list-item - Аптечные сети;
+          li.form-section__list-item - Интернет-магазины;
+          li.form-section__list-item - Супермаркеты и специализированные магазины;
+          li.form-section__list-item - Магазины товаров для материнства и детства;
+          li.form-section__list-item - Лечебно-профилактические учреждения.
+
+      // Правая колонка — форма
+      .form-section__form
+        h4.form-section__subtitle Хоти получать качественную продукцию?
+        p.form-section__desc Оставьте заявку и мы свяжемся с вами в ближайшее время
+        form.form.request-form(action="#" method="post" novalidate)
+          .request-form__row
+            input.input.input__transparent.request-form__input(type="text" name="name" placeholder="Имя" required)
+            input.input.input__transparent.request-form__input(type="email" name="email" placeholder="Почта" required)
+          .request-form__row
+            input.input.input__transparent.request-form__input(type="tel" name="phone" placeholder="Телефон" required)
+            input.input.input__transparent.request-form__input(type="text" name="company" placeholder="Название компании")
+          .request-form__agree
+            label.request-form__checkbox
+              input(type="checkbox" name="agree" required)
+              span Нажимая "Отправить", вы соглашаетесь с условиями 
+                a(href="#" target="_blank" rel="noopener") политики конфиденциальности 
+                | данного сайта
+          button.btn.request-form__submit(type="submit") Отправить заявку
+
+        .request-form__logo 
+          include ../icons/icon-logo

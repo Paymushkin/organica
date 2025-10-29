@@ -1,0 +1,19 @@
+//- Страница "О нас"
+doctype html
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title О нас - Органика
+    meta(name="description" content="Узнайте больше о нашей компании и наших принципах работы")
+    link(rel="stylesheet" href="css/main.css")
+  
+  body.page-about
+    main.main
+      //- Подключение секций
+      include ../sections/header
+      include ../sections/page-header
+      include ../sections/about
+      include ../sections/footer
+    
+    script(src="js/main.js" defer)

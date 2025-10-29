@@ -1,0 +1,122 @@
+/* Примеры стилизации иконок */
+
+// Базовые стили для иконок
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  fill: currentColor;
+  transition: all var(--transition-normal);
+}
+
+// Размеры иконок
+.icon--sm {
+  width: 16px;
+  height: 16px;
+}
+
+.icon--md {
+  width: 24px;
+  height: 24px;
+}
+
+.icon--lg {
+  width: 32px;
+  height: 32px;
+}
+
+.icon--xl {
+  width: 48px;
+  height: 48px;
+}
+
+// Цвета иконок
+.icon--primary {
+  color: var(--color-primary);
+}
+
+.icon--secondary {
+  color: var(--color-text-secondary);
+}
+
+.icon--white {
+  color: var(--color-text-inverse);
+}
+
+.icon--success {
+  color: var(--color-success);
+}
+
+.icon--error {
+  color: var(--color-error);
+}
+
+// Эффекты при наведении
+.icon--hover {
+  cursor: pointer;
+  
+  &:hover {
+    color: var(--color-primary);
+    transform: scale(1.1);
+  }
+}
+
+// Анимации
+.icon--spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.icon--pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+// Логотипы
+.logo {
+  display: inline-block;
+  vertical-align: middle;
+  fill: currentColor;
+  transition: all var(--transition-normal);
+}
+
+.logo--sm {
+  width: 100px;
+  height: 28px;
+}
+
+.logo--md {
+  width: 150px;
+  height: 42px;
+}
+
+.logo--lg {
+  width: 200px;
+  height: 56px;
+}
+
+
+
+
+
+
+
+

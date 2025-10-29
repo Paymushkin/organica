@@ -1,0 +1,77 @@
+/* 
+Правила порядка свойств CSS
+
+1. Положение элемента относительно других:
+   - position
+   - left, right, top, bottom
+   - float
+   - clear
+   - z-index
+
+2. Размеры и отступы:
+   - width
+   - height
+   - margin
+   - padding
+
+3. Рамка:
+   - border
+
+4. Общее оформление содержимого:
+   - list-style-type
+   - overflow
+   - display
+   - visibility
+
+5. Цветовое и стилевое оформление:
+   - background
+   - color
+   - font
+   - text-decoration
+   - text-align
+   - vertical-align
+   - white-space
+   - word-wrap
+
+6. Анимации и переходы:
+   - transition
+   - animation
+   - transform
+
+Пример правильного порядка:
+
+.element {
+  // 1. Позиционирование
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  
+  // 2. Размеры и отступы
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: var(--spacing-md);
+  
+  // 3. Рамка
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  
+  // 4. Оформление содержимого
+  display: flex;
+  overflow: hidden;
+  
+  // 5. Стилизация
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  text-align: center;
+  
+  // 6. Анимации
+  transition: all var(--transition-normal);
+}
+*/
+
+
+
+

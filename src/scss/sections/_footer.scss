@@ -1,0 +1,66 @@
+// Секция "Подвал сайта"
+.footer {
+  background: var(--color-primary);
+  color: #E7EBEA;
+  padding: 32px 0;
+
+  &__col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    a {
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+}
+
+.footer__content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.footer__grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.footer__list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.footer__link { color: inherit; text-decoration: none; opacity: .9; transition: opacity .2s ease; }
+.footer__link:hover { opacity: 1; }
+
+.footer__title {
+  color: rgba(231, 235, 234, 0.50);
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.footer__text {
+  font-family: "PT Sans", sans-serif;
+  line-height: 1.2;
+  color: #E7EBEA;
+  font-style: normal;
+  text-decoration: none;
+}
+
+.footer__cta {
+  margin-top: 32px;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.footer__proposal {
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  line-height: 1.2;
+  color: #B7C0BC;
+  text-decoration: none;
+}

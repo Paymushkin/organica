@@ -1,0 +1,133 @@
+/* SVG формы для элементов */
+
+/* Основная форма из SVG */
+.shape-card {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='307' height='234' viewBox='0 0 307 234' fill='none'%3E%3Cpath d='M240 97C240 99.2091 241.791 101 244 101H302.07C304.279 101 306.07 102.791 306.07 105V230C306.07 232.209 304.279 234 302.07 234H4.00001C1.79087 234 0 232.209 0 230V4C0 1.79086 1.79086 0 4 0H236C238.209 0 240 1.79086 240 4V97Z' fill='%2353B053'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -1;
+  }
+}
+
+/* Вариант с clip-path (более современный) */
+.shape-card-clip {
+  clip-path: polygon(
+    0% 0%, 
+    78.5% 0%, 
+    78.5% 41.5%, 
+    100% 41.5%, 
+    100% 100%, 
+    0% 100%
+  );
+  background-color: var(--color-primary-light);
+}
+
+/* Форма с градиентом */
+.shape-card-gradient {
+  position: relative;
+  background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 100%);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='307' height='234' viewBox='0 0 307 234' fill='none'%3E%3Cpath d='M240 97C240 99.2091 241.791 101 244 101H302.07C304.279 101 306.07 102.791 306.07 105V230C306.07 232.209 304.279 234 302.07 234H4.00001C1.79087 234 0 232.209 0 230V4C0 1.79086 1.79086 0 4 0H236C238.209 0 240 1.79086 240 4V97Z' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+  }
+}
+
+/* Форма с тенью */
+.shape-card-shadow {
+  position: relative;
+  background-color: var(--color-primary-light);
+  box-shadow: var(--shadow-lg);
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='307' height='234' viewBox='0 0 307 234' fill='none'%3E%3Cpath d='M240 97C240 99.2091 241.791 101 244 101H302.07C304.279 101 306.07 102.791 306.07 105V230C306.07 232.209 304.279 234 302.07 234H4.00001C1.79087 234 0 232.209 0 230V4C0 1.79086 1.79086 0 4 0H236C238.209 0 240 1.79086 240 4V97Z' fill='%2353B053'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -1;
+  }
+}
+
+/* Адаптивные размеры */
+.shape-card {
+  width: 100%;
+  max-width: 307px;
+  height: 234px;
+  
+  @media (max-width: 768px) {
+    max-width: 250px;
+    height: 190px;
+  }
+  
+  @media (max-width: 480px) {
+    max-width: 200px;
+    height: 152px;
+  }
+}
+
+/* Контент внутри формы */
+.shape-card-content {
+  position: relative;
+  z-index: 2;
+  padding: var(--spacing-lg);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+/* Анимация при наведении */
+.shape-card:hover {
+  transform: translateY(-5px);
+  transition: transform var(--transition-normal);
+}
+
+/* Вариант с псевдоэлементом */
+.shape-card-pseudo {
+  position: relative;
+  background-color: var(--color-primary-light);
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 25%;
+    height: 40%;
+    background-color: var(--color-primary);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
+  }
+}
+
+
+
+
+
