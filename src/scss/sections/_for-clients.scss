@@ -3,6 +3,10 @@
   position: relative;
   padding: 80px 0;
 
+  @media (max-width: 768px) {
+    padding: 48px 0;
+  }
+
   &__decoration {
     position: absolute;
     top: 0;
@@ -24,6 +28,7 @@
 
   @media (max-width: 768px) {
     flex-direction: column;
+    gap: 20px;
   }
 }
 
@@ -75,7 +80,6 @@
 
   &__description {
     color: var(--color-primary-dark);
-    line-height: 1.2;
   }
 
   &__center {

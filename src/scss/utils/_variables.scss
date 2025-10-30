@@ -10,28 +10,45 @@
   --color-primary-light-transparent: #e4f4e9;
   --color-border-primary: #043F2E;
   
+  // Основные цвета - варианты для hover/active
+  --color-primary-hover: rgba(42, 111, 43, 0.1);
+  --color-primary-hover-subtle: rgba(42, 111, 43, 0.08);
+  --color-primary-hover-dark: #3a7c4a;
+  --color-primary-hover-darkest: #2d5a27;
+  --color-primary-solid: rgba(42, 111, 43, 1);
+  --color-form-bg: rgba(65, 143, 85, 0.10);
+  
   // Текст
   --color-text-primary: #000000;
   --color-text-secondary: #E7EBEA;
   --color-text-tertiary: #F6F1ED;
   --color-text-quaternary: #64676C;
+  --color-text-inverse: #ffffff;
+  --color-text-secondary-muted: rgba(231, 235, 234, 0.50);
+  --color-text-primary-muted: rgba(4, 63, 46, 0.50);
+  --color-text-primary-subtle: rgba(4, 63, 46, 0.30);
+  --color-footer-muted: #B7C0BC;
   
   // Фон
   --color-bg-primary: rgba(245, 255, 249, 1);
   --color-bg-secondary: #ffffff;
-  --color-bg-dark: #1a1a1a;
-  
-  // Состояния
-  --color-success: #418F55;
-  --color-warning: #ffc107;
-  --color-error: #dc3545;
-  --color-info: #17a2b8;
+  --color-bg-placeholder: #eee;
+  --color-white-overlay: rgba(255, 255, 255, 0.2);
   
   // Границы
   --color-border: #2A6F2B;
   --color-border-transparent: rgba(42, 111, 43, 0.40);
   --color-border-light: #E7EBEA;
-  --color-border-dark: #154B3E;
+  
+  // Декоративные цвета
+  --color-decor-stroke: #D4DDD8;
+  
+  // Состояния
+  --color-disabled: #ccc;
+  --color-success: #418F55;
+  --color-error: #dc3545;
+  --color-shadow-black-light: rgba(0, 0, 0, 0.05);
+  --color-shadow-black-very-light: rgba(0, 0, 0, 0.04);
 }
 
 /* Отступы */

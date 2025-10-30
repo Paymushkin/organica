@@ -6,33 +6,153 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Инициализация компонентов
   initMobileMenu();
+  initMobileMenuBar();
   initSmoothScroll();
   initLazyLoading();
   initTabs();
   initHeroSwiper();
   initNewsResponsiveSliders();
   initHeaderScrollFill();
+  initModals();
 });
 
-// Мобильное меню
+// Мобильное меню (полноэкранное)
 function initMobileMenu() {
-  const menuToggle = document.querySelector('.header__menu-toggle');
+  const burger = document.querySelector('.header__burger');
+  const menuBarButton = document.querySelector('.mobile-menu-bar__button');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  const mobileMenuClose = document.querySelector('.mobile-menu__close');
   const header = document.querySelector('.header');
-  
-  if (menuToggle && header) {
-    menuToggle.addEventListener('click', function() {
-      header.classList.toggle('header--menu-open');
+  const body = document.body;
+
+  if (!mobileMenu) return;
+
+  const openMenu = () => {
+    mobileMenu.classList.add('mobile-menu--open');
+    // Скрываем header при открытии меню
+    if (header) {
+      header.style.display = 'none';
+    }
+    // Блокируем прокрутку body
+    body.style.overflow = 'hidden';
+  };
+
+  const closeMenu = () => {
+    mobileMenu.classList.remove('mobile-menu--open');
+    // Показываем header при закрытии меню
+    if (header) {
+      header.style.display = '';
+    }
+    // Разблокируем прокрутку body
+    body.style.overflow = '';
+  };
+
+  const toggleMenu = () => {
+    const isOpen = mobileMenu.classList.contains('mobile-menu--open');
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  };
+
+  // Обработчики открытия
+  if (burger) {
+    burger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMenu();
     });
   }
+
+  if (menuBarButton) {
+    menuBarButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMenu();
+    });
+  }
+
+  // Обработчик закрытия
+  if (mobileMenuClose) {
+    mobileMenuClose.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeMenu();
+    });
+  }
+
+  // Закрытие при клике на backdrop
+  const backdrop = document.querySelector('.mobile-menu__backdrop');
+  if (backdrop) {
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) {
+        closeMenu();
+      }
+    });
+  }
+
+  // Закрытие при нажатии Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('mobile-menu--open')) {
+      closeMenu();
+    }
+  });
+}
+
+// Попапы (универсальная инициализация)
+function initModals() {
+  const body = document.body;
+
+  function openModal(name) {
+    const modal = document.querySelector(`[data-modal="${name}"]`);
+    if (!modal) return;
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    body.style.overflow = 'hidden';
+  }
+
+  function closeModal(modal) {
+    if (!modal) return;
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    body.style.overflow = '';
+  }
+
+  // Открытие по клику на любой триггер
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('[data-modal-open]');
+    if (trigger) {
+      const name = trigger.getAttribute('data-modal-open');
+      if (name) {
+        e.preventDefault();
+        openModal(name);
+      }
+    }
+
+    // Закрытие по кнопке или клику на затемнение
+    const closeBtn = e.target.closest('[data-modal-close]');
+    if (closeBtn) {
+      const modal = e.target.closest('.modal') || document.querySelector('.modal.is-open');
+      if (modal) closeModal(modal);
+    }
+  });
+
+  // Закрытие по ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const opened = document.querySelector('.modal.is-open');
+      if (opened) closeModal(opened);
+    }
+  });
 }
 
 // Адаптивные слайдеры новостей: <=768 включаем Swiper, >768 выключаем
 function initNewsResponsiveSliders() {
-  const instances = new Map();
+  // Глобальное хранилище экземпляров, чтобы было доступно из initTabs
+  const instances = window.newsSwiperInstances || new Map();
+  window.newsSwiperInstances = instances;
 
-  function getVisibleContainers() {
-    // Получаем только видимые (активные) слайдеры
-    return Array.from(document.querySelectorAll('.tabs__panel.is-active .news__slider .swiper'));
+  function getAllContainers() {
+    // Получаем все слайдеры (во всех табах)
+    return Array.from(document.querySelectorAll('.news__slider .swiper'));
   }
 
   function enable(swiperEl) {
@@ -41,10 +161,24 @@ function initNewsResponsiveSliders() {
     const sliderId = swiperEl.getAttribute('data-news-slider');
     const prevBtn = document.querySelector(`[data-news-prev="${sliderId}"]`);
     const nextBtn = document.querySelector(`[data-news-next="${sliderId}"]`);
+    const container = swiperEl.closest('.news__slider');
+    // Зафиксируем текущую высоту контейнера на время инициализации, чтобы избежать скачка
+    const containerHeight = container ? container.offsetHeight : 0;
+    if (container && containerHeight > 0) {
+      container.style.minHeight = containerHeight + 'px';
+    }
+    // Не скрываем слайдер, избегаем моргания при первом показе
     
     const instance = new Swiper(swiperEl, {
       slidesPerView: 1,
       spaceBetween: 12,
+      autoHeight: true,
+      observer: true,
+      observeParents: true,
+      preloadImages: false,
+      lazy: {
+        loadPrevNext: true,
+      },
       breakpoints: {
         576: { slidesPerView: 2, spaceBetween: 12 },
       },
@@ -60,6 +194,13 @@ function initNewsResponsiveSliders() {
         init: function() {
           updateNewsSlideCounter(this, sliderId);
           resetNewsProgressBar(sliderId);
+          // После инициализации показываем слайдер и снимаем фиксацию высоты с небольшой задержкой
+          requestAnimationFrame(() => {
+            setTimeout(() => {
+              if (container) container.style.minHeight = '';
+              this.updateAutoHeight(200);
+            }, 100);
+          });
         },
         slideChange: function() {
           updateNewsSlideCounter(this, sliderId);
@@ -117,17 +258,17 @@ function initNewsResponsiveSliders() {
 
   function refresh() {
     const width = window.innerWidth;
-    const visibleContainers = getVisibleContainers();
+    const allContainers = getAllContainers();
     
     // Отключаем все ранее инициализированные
     instances.forEach((inst, el) => {
-      if (!visibleContainers.includes(el)) {
+      if (!allContainers.includes(el) || width > 768) {
         disable(el);
       }
     });
     
     // Обрабатываем видимые контейнеры
-    visibleContainers.forEach(el => {
+    allContainers.forEach(el => {
       if (width <= 768) enable(el);
       else disable(el);
     });
@@ -157,9 +298,27 @@ function initTabs() {
         panels.forEach(panel => {
           panel.classList.toggle('is-active', panel.getAttribute('data-tab-panel') === target);
         });
+        const targetPanel = container.querySelector(`.tabs__panel[data-tab-panel="${target}"]`);
         // Переинициализация слайдеров новостей при переключении таба
         if (window.newsSlidersRefresh) {
-          setTimeout(() => window.newsSlidersRefresh(), 50);
+          // Перестраиваем все слайдеры и дополнительно обновляем те, что в целевой панели
+          setTimeout(() => {
+            window.newsSlidersRefresh();
+            if (targetPanel) {
+              const swipers = targetPanel.querySelectorAll('.news__slider .swiper');
+              swipers.forEach(swiperEl => {
+                const inst = (window.newsSwiperInstances && window.newsSwiperInstances.get(swiperEl));
+                if (inst) {
+                  inst.update();
+                  inst.updateAutoHeight(200);
+                }
+              });
+              // Дополнительно стабилизируем высоту после обновления
+              requestAnimationFrame(() => {
+                inst.updateAutoHeight(200);
+              });
+            }
+          }, 100);
         }
       });
     });
@@ -330,6 +489,57 @@ function initHeaderScrollFill() {
 
   // Слушатели
   window.addEventListener('scroll', utils.throttle(toggleOnScroll, 50), { passive: true });
+}
+
+// Плашка меню для мобильной версии (появляется при скролле)
+function initMobileMenuBar() {
+  const menuBar = document.querySelector('.mobile-menu-bar');
+  if (!menuBar) return;
+
+  // Только на мобильных устройствах
+  if (window.innerWidth > 767) return;
+
+  const updateVisibility = () => {
+    // Получаем значение скролла из нескольких источников для совместимости
+    const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+    
+    // При скролле меньше 50px (включая 0) - плашка скрыта
+    // Используем строгое сравнение для гарантированного скрытия при нулевом скролле
+    if (scrollY < 50) {
+      menuBar.classList.remove('mobile-menu-bar--visible');
+    } else {
+      // При скролле >= 50px - показываем плашку
+      menuBar.classList.add('mobile-menu-bar--visible');
+    }
+  };
+
+  // Дополнительная проверка при достижении верха страницы
+  const checkScrollTop = () => {
+    const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+    if (scrollY === 0) {
+      menuBar.classList.remove('mobile-menu-bar--visible');
+    }
+  };
+
+  // Первичная установка
+  updateVisibility();
+
+  // Слушатели с более частой проверкой для надежности
+  window.addEventListener('scroll', () => {
+    updateVisibility();
+    // Дополнительная проверка при достижении верха
+    checkScrollTop();
+  }, { passive: true });
+
+  window.addEventListener('scrollend', checkScrollTop, { passive: true });
+
+  window.addEventListener('resize', utils.debounce(() => {
+    if (window.innerWidth > 767) {
+      menuBar.classList.remove('mobile-menu-bar--visible');
+    } else {
+      updateVisibility();
+    }
+  }, 150));
 }
 
 // Утилиты

@@ -1,0 +1,18 @@
+mixin modal(name, options)
+  - const opts = options || {}
+  - const title = opts.title || ''
+  - const closeLabel = opts.closeLabel || 'Закрыть'
+
+  .modal(data-modal=name aria-hidden="true" role="dialog" aria-modal="true")
+    .modal__backdrop(data-modal-close)
+    .modal__dialog(role="document")
+      if title
+        .modal__header
+          .modal__title= title
+          button.modal__close(type="button" data-modal-close aria-label=closeLabel)
+      else
+        button.modal__close(type="button" data-modal-close aria-label=closeLabel)
+      .modal__content
+        block
+
+

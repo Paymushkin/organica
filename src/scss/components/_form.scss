@@ -3,15 +3,14 @@
     border-radius: 8px;
     font-family: PT Sans, sans-serif;
     font-size: 16px;
-    line-height: 1.2;
   
     &__transparent {
       color: var(--color-primary-dark);
       background: transparent;
-      border: 1px solid rgba(42, 111, 43, 0.40);
+      border: 1px solid var(--color-border-transparent);
 
       &::placeholder {
-        color: rgba(4, 63, 46, 0.50);
+        color: var(--color-text-primary-muted);
       }
     }
 }

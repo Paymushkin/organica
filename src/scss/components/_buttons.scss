@@ -6,13 +6,12 @@
   align-items: center;
   border-radius: 4px;
   color: var(--color-text-secondary);
-  background: #418F55;
+  background: var(--color-primary);
   border: none;
   cursor: pointer;
   font-family: inherit;
   font-size: inherit;
   text-align: center;
-  line-height: 1.2;
   text-decoration: none;
   transition: all 0.3s ease;
 
@@ -24,29 +23,29 @@
   
   // Hover эффекты
   &:hover {
-    background: #3a7c4a;
+    background: var(--color-primary-hover-dark);
   }
   
   // Active состояние
   &:active {
     transform: translateY(0);
-    background: #2d5a27;
+    background: var(--color-primary-hover-darkest);
   }
   
   // Focus состояние
   &:focus {
-    outline: 2px solid #418F55;
+    outline: 2px solid var(--color-primary);
     outline-offset: 2px;
   }
   
   // Disabled состояние
   &:disabled {
-    background: #ccc;
+    background: var(--color-disabled);
     cursor: not-allowed;
     transform: none;
     
     &:hover {
-      background: #ccc;
+      background: var(--color-disabled);
       transform: none;
     }
   }
@@ -59,12 +58,12 @@
 
     &:hover {
       background: var(--color-border-primary);
-      color: white;
+      color: var(--color-text-inverse);
     }
 
     &:active {
       background: var(--color-border-primary);
-      color: white;
+      color: var(--color-text-inverse);
     }
 
     &:focus {
@@ -74,14 +73,14 @@
 
     &:disabled {
       background: transparent;
-      border-color: #ccc;
-      color: #ccc;
+      border-color: var(--color-disabled);
+      color: var(--color-disabled);
       cursor: not-allowed;
       
       &:hover {
         background: transparent;
-        border-color: #ccc;
-        color: #ccc;
+        border-color: var(--color-disabled);
+        color: var(--color-disabled);
       }
     }
   }

@@ -2,6 +2,10 @@
 .partners {
   padding: 64px 0;
 
+  @media (max-width: 768px) {
+    padding: 24px 0 0 0;
+  }
+
   &__title {
     margin-bottom: 32px;
   }
@@ -62,8 +66,8 @@
 
     /* Постоянный цвет логотипов */
     svg path, svg [fill] {
-      fill: rgba(42, 111, 43, 1);
-      stroke: rgba(42, 111, 43, 1);
+      fill: var(--color-primary-solid);
+      stroke: var(--color-primary-solid);
     }
   }
 }

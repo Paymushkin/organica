@@ -25,7 +25,7 @@ section.hero
       
         .hero__stats
             .hero__stat
-                .hero__stat-number 6500
+                .hero__stat-number 6 500
                 .hero__stat-label Юридических лиц среди клиентов
             .hero__stat
                 .hero__stat-number 12 000+
@@ -37,10 +37,16 @@ section.hero
       .swiper-wrapper
         .swiper-slide
           .hero__slide-content
-            img(src="images/hero/slide-1.png" alt="Фармацевтика" loading="lazy")
+            picture
+              source(media="(max-width: 576px)" srcset="images/hero/slide-1-mob.png")
+              img(src="images/hero/slide-1.png" alt="Фармацевтика" loading="lazy")
         .swiper-slide
           .hero__slide-content
-            img(src="images/hero/slide-2.png" alt="Медицинские препараты" loading="lazy")
+            picture
+              source(media="(max-width: 576px)" srcset="images/hero/slide-2-mob.png")
+              img(src="images/hero/slide-2.png" alt="Медицинские препараты" loading="lazy")
         .swiper-slide
           .hero__slide-content
-            img(src="images/hero/slide-3.png" alt="Доставка лекарств" loading="lazy")
+            picture
+              source(media="(max-width: 576px)" srcset="images/hero/slide-3-mob.png")
+              img(src="images/hero/slide-3.png" alt="Доставка лекарств" loading="lazy")

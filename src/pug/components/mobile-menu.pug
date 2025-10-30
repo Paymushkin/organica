@@ -1,0 +1,69 @@
+//- Полноэкранное мобильное меню
+.mobile-menu
+  // Blur фон
+  .mobile-menu__backdrop
+  
+  // Контент меню
+  .mobile-menu__content
+    
+    // Навигация
+    nav.mobile-menu__block
+      button.mobile-menu__close(type="button" aria-label="Закрыть меню")
+        include ../icons/icon-close
+      ul.mobile-menu__nav
+        li.mobile-menu__nav-item
+          a.mobile-menu__nav-link(href="/")
+            span.mobile-menu__nav-icon
+              include ../icons/icon-home
+            span.mobile-menu__nav-text Главная
+        
+        li.mobile-menu__nav-item
+          a.mobile-menu__nav-link(href="/suppliers")
+            span.mobile-menu__nav-icon
+              include ../icons/icon-supplier
+            span.mobile-menu__nav-text Поставщикам
+        
+        li.mobile-menu__nav-item
+          a.mobile-menu__nav-link(href="/clients")
+            span.mobile-menu__nav-icon
+              include ../icons/icon-client
+            span.mobile-menu__nav-text Клиентам
+        
+        li.mobile-menu__nav-item
+          a.mobile-menu__nav-link(href="/news")
+            span.mobile-menu__nav-icon
+              include ../icons/icon-document
+            span.mobile-menu__nav-text Новости
+        
+        li.mobile-menu__nav-item
+          a.mobile-menu__nav-link(href="/contacts")
+            span.mobile-menu__nav-icon
+              include ../icons/icon-phone-white
+            span.mobile-menu__nav-text Контакты
+    
+    // Контактная информация
+    ul.mobile-menu__block.mobile-menu__contacts
+      li.mobile-menu__contact-item
+        .mobile-menu__contact-label Общие вопросы
+        a.mobile-menu__contact-value(href="mailto:sales@organica.ru") sales@organica.ru
+      
+      li.mobile-menu__contact-item
+        .mobile-menu__contact-label Коммерческие предложения
+        a.mobile-menu__contact-value(href="mailto:organica@aaanet.ru") organica@aaanet.ru
+      
+      li.mobile-menu__contact-item
+        .mobile-menu__contact-label
+        .mobile-menu__contact-value Ростов-на-Дону, ул. Вавилова, д. 59
+    
+    // Кнопки действий
+    .mobile-menu__actions
+      button.mobile-menu__button.mobile-menu__button--request(type="button")
+        span.mobile-menu__button-text Отправить заявку
+        span.mobile-menu__button-icon
+          include ../icons/icon-arrow-right-white
+      
+      a.mobile-menu__button.mobile-menu__button--phone(href="tel:+79999999999")
+        span.mobile-menu__button-text +7 999 999 99 99
+        span.mobile-menu__button-icon
+          include ../icons/icon-phone
+

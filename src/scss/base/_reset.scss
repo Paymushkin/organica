@@ -20,7 +20,7 @@ html {
 body {
   font-family: var(--font-family-primary);
   font-size: var(--font-size-text);
-  line-height: var(--line-height-normal);
+  line-height: var(--line-height-tight);
   color: var(--color-text-primary);
   background-color: var(--color-bg-primary);
 }
@@ -135,4 +135,8 @@ input[type="number"]::-webkit-inner-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
+}
+
+address {
+  font-style: normal;
 }

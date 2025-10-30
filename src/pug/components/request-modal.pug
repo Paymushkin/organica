@@ -1,0 +1,32 @@
+include modal
+
++modal('request', { closeLabel: 'Закрыть попап' })
+  //- Шапка попапа: лого, заголовок, подзаголовок
+  .modal__body
+    .modal__header
+      .modal__logo
+        include ../icons/icon-logo
+      button.modal__close(type="button" data-modal-close aria-label="Закрыть")
+        include ../icons/icon-close
+    .modal__content
+        h3.modal__title Оставить заявку
+        p.modal__subheading Оставьте заявку и мы свяжемся с вами в ближайшее время
+
+        //- Форма
+        form.modal-form(action="#" method="post" novalidate)
+            .modal-form__row
+                input.input.input__transparent(type="text" name="name" placeholder="Имя" required)
+                input.input.input__transparent(type="email" name="email" placeholder="Почта" required)
+            .modal-form__row
+                input.input.input__transparent(type="tel" name="phone" placeholder="+7 (999) 999 99 99" required)
+                input.input.input__transparent(type="text" name="company" placeholder="Название компании")
+            textarea.input.input__transparent.modal-form__comment(name="comment" placeholder="Комментарий")
+            .request-form__agree
+                label.request-form__checkbox
+                    input(type="checkbox" name="agree" required)
+                    span Нажимая "Отправить", вы соглашаетесь с условиями 
+                        a(href="#" target="_blank" rel="noopener") политики конфиденциальности 
+                        | данного сайта
+        button.btn.modal-form__submit(type="submit") Отправить заявку
+
+

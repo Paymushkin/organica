@@ -1,0 +1,113 @@
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 1000;
+  align-items: center; /* центр по вертикали */
+  justify-content: center; /* центр по горизонтали */
+}
+
+.modal.is-open {
+  display: flex;
+}
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(17, 24, 21, 0.6);
+  backdrop-filter: blur(2px);
+}
+
+.modal__dialog {
+  position: relative;
+  margin: 0; /* центрируется контейнером */
+  max-width: 800px;
+  width: calc(100% - 32px);
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  max-height: calc(100% - 80px); /* запас от краёв */
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;  
+  padding: 24px 32px;
+}
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal__title {
+  margin-bottom: 20px;
+}
+
+.modal__close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px;
+  cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .modal__dialog { max-height: calc(100% - 40px); }
+}
+
+/* Контент попапа заявки */
+.modal__logo {
+  width: 20px;
+  height: 32px;
+}
+
+.modal__subheading {
+  color: var(--color-primary-dark);
+}
+
+.modal-form {
+  margin-top: 20px;
+}
+
+.modal-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.modal-form__comment {
+  min-height: 120px;
+  resize: vertical;
+  width: 100%;
+}
+
+.modal-form__agree {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  color: #6b7c73;
+  margin: 8px 0 16px;
+}
+
+.modal-form__submit {
+//   width: 100%;
+}
+
+@media (max-width: 576px) {
+  .modal__content { padding: 20px; }
+  .modal-form__row { grid-template-columns: 1fr; }
+}
+
+

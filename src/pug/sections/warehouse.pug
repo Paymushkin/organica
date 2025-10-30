@@ -1,0 +1,146 @@
+//- Секция Склады (табированный блок с картой)
+section.warehouse
+  .container
+    .warehouse__decoration
+      include ../icons/decor-wave6
+    h2.warehouse__title Наша компания охватывает 23 региона России
+
+    //- Табы (4 штуки, переиспользуем базовый компонент .tabs)
+    .tabs(data-tabs="warehouse")
+      .tabs__list
+        button.tabs__tab.is-active(type="button" data-tab="all") Все склады
+        button.tabs__tab(type="button" data-tab="krasnodar") Склад г. Краснодар
+        button.tabs__tab(type="button" data-tab="voronezh") Склад г. Воронеж
+        button.tabs__tab(type="button" data-tab="rostov") Склад г. Ростов
+
+      .tabs__panels
+        //- Все склады (сводная информация)
+        .tabs__panel.is-active(data-tab-panel="all")
+          .warehouse__content
+            .warehouse__left
+              .warehouse__info
+                h3.warehouse__subtitle Регионы обслуживания
+                p.warehouse__text 
+                  | г. Краснодар
+                  br
+                  br
+                  | Краснодарский край, Республика Калмыкия, Республика Адыгея, 
+                  | Республика Дагестан, Чеченская республика, Ставропольский край, 
+                  | Республика Северная Осетия (Алания), Карачаево-Черкесская республика, 
+                  | Кабардино-Балкарская Республика, Республика Ингушетия
+                  br
+                  br
+                  | г. Воронеж
+                  br
+                  br
+                  | Воронежская область, Белгородская область, Тульская область, 
+                  | Липецкая область, Тамбовская область, Орловская область, 
+                  | Калужская область, Курская область
+                  br
+                  br
+                  | г. Ростов-на-Дону
+                  br
+                  br
+                  | Республика Крым, Ростовская область
+              a.btn.warehouse__action(href="#") Отправить заявку
+            .warehouse__right
+              .warehouse__fog
+              //- Общая карта (используем одну из доступных карт как заглушку)
+              img.warehouse__map(src="images/warehouse/all.svg" alt="Карта регионов")
+
+        //- Краснодар
+        .tabs__panel(data-tab-panel="krasnodar")
+          .warehouse__content
+            .warehouse__left
+              .warehouse__info
+                .warehouse__info-block 
+                  h3.warehouse__subtitle Адрес:
+                  address.warehouse__text 
+                    | Склад Краснодар: 350080, Краснодарский край, 
+                    | г. Краснодар, ул. Производственная, д. 21
+                .warehouse__info-block 
+                  h3.warehouse__subtitle Контакты:
+                  span.warehouse__text 
+                    | Телефон:
+                    a.warehouse__text(href="tel:+78632232470") +7(863)223-24-70
+                  span.warehouse__text 
+                    | Отдел претензий:
+                    a.warehouse__text(href="mailto:pretenzia_krd@rndhost.biz") pretenzia_krd@rndhost.biz
+                  span.warehouse__text 
+                    | Отдел продаж:
+                    a.warehouse__text(href="mailto:sales@organica-ug.ru") sales@organica-ug.ru
+                .warehouse__info-block
+                  h3.warehouse__subtitle Регионы обслуживания:
+                  p.warehouse__text 
+                    | Краснодарский край, Республика Калмыкия, Республика Адыгея, 
+                    | Республика Дагестан, Чеченская республика, Ставропольский край, 
+                    | Республика Северная Осетия (Алания), Карачаево-Черкесская республика, 
+                    | Кабардино-Балкарская Республика, Республика Ингушетия
+
+              a.btn.warehouse__action(href="#") Отправить заявку
+            .warehouse__right
+              .warehouse__fog
+              img.warehouse__map(src="images/warehouse/krasnodar.svg" alt="Карта — Краснодар")
+
+        //- Воронеж
+        .tabs__panel(data-tab-panel="voronezh")
+          .warehouse__content
+            .warehouse__left
+              .warehouse__info
+                .warehouse__info-block 
+                  h3.warehouse__subtitle Адрес:
+                  address.warehouse__text 
+                    | Склад Воронеж: 394090, Воронежская область, 
+                    | г. Воронеж, ул. Новосибирская, д. 88б, помещение 1
+                .warehouse__info-block 
+                  h3.warehouse__subtitle Контакты:
+                  span.warehouse__text 
+                    | Телефон:
+                    a.warehouse__text(href="tel:+78632232470") +7(863)223-24-70
+                  span.warehouse__text 
+                    | Отдел претензий:
+                    a.warehouse__text(href="mailto:claim.vrn@rndhost.biz") claim.vrn@rndhost.biz
+                  span.warehouse__text 
+                    | Отдел продаж:
+                    a.warehouse__text(href="mailto:sales@organica-ug.ru") sales@organica-ug.ru
+                .warehouse__info-block
+                  h3.warehouse__subtitle Регионы обслуживания:
+                  p.warehouse__text 
+                    | Рязанская область, Белгородская область, Тульская область, Липецкая область, 
+                    | Тамбовская область, Орловская область, Калужская область, Курская область, 
+                    | Воронежская область, Брянская область, Саратовская область
+              a.btn.warehouse__action(href="#") Отправить заявку
+            .warehouse__right
+              .warehouse__fog
+              img.warehouse__map(src="images/warehouse/voronezh.svg" alt="Карта — Воронеж")
+
+        //- Ростов-на-Дону
+        .tabs__panel(data-tab-panel="rostov")
+          .warehouse__content
+            .warehouse__left
+              .warehouse__info
+                .warehouse__info-block 
+                  h3.warehouse__subtitle Адрес:
+                  address.warehouse__text 
+                    | Склад Ростов: 344064, Ростовская область, 
+                    | г. Ростов-на-Дону, ул. Вавилова, д. 59
+                .warehouse__info-block 
+                  h3.warehouse__subtitle Контакты:
+                  span.warehouse__text 
+                    | Телефон:
+                    a.warehouse__text(href="tel:+78632232470") +7(863)223-24-70
+                  span.warehouse__text 
+                    | Отдел претензий:
+                    a.warehouse__text(href="mailto:akt@rndhost.biz") akt@rndhost.biz
+                  span.warehouse__text 
+                    | Отдел продаж:
+                    a.warehouse__text(href="mailto:sales@organica-ug.ru") sales@organica-ug.ru
+                .warehouse__info-block
+                  h3.warehouse__subtitle Регионы обслуживания:
+                  p.warehouse__text 
+                    | Республика Крым, Ростовская область
+              a.btn.warehouse__action(href="#") Отправить заявку
+            .warehouse__right
+              .warehouse__fog
+              img.warehouse__map(src="images/warehouse/rostov.svg" alt="Карта — Ростов-на-Дону")
+
