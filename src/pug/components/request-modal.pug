@@ -19,7 +19,7 @@ include modal
                 input.input.input__transparent(type="email" name="email" placeholder="Почта" required)
             .modal-form__row
                 input.input.input__transparent(type="tel" name="phone" placeholder="+7 (999) 999 99 99" required)
-                input.input.input__transparent(type="text" name="company" placeholder="Название компании")
+                input.input.input__transparent(type="text" name="company" placeholder="Название компании" required)
             textarea.input.input__transparent.modal-form__comment(name="comment" placeholder="Комментарий")
             .request-form__agree
                 label.request-form__checkbox
@@ -27,6 +27,6 @@ include modal
                     span Нажимая "Отправить", вы соглашаетесь с условиями 
                         a(href="#" target="_blank" rel="noopener") политики конфиденциальности 
                         | данного сайта
-        button.btn.modal-form__submit(type="submit") Отправить заявку
+            button.btn.modal-form__submit(type="submit") Отправить заявку
 
 

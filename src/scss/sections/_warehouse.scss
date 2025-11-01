@@ -10,6 +10,14 @@
     top: -75px;
     right: -100px;
     z-index: 2;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+
+    .about-page & {
+      display: none;
+    }
   }
 
   &__title {

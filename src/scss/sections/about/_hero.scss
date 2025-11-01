@@ -1,0 +1,27 @@
+.page-about {
+  padding: 32px 0 64px;
+
+  @media (max-width: 768px) {
+    padding: 16px 0 48px;
+  }
+
+  &__hero-content {
+    position: relative;
+  }
+
+  &__hero-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    font-size: 0px;
+
+    @media (max-width: 576px) {
+      position: relative;
+      margin-bottom: 20px;
+      color: var(--color-primary-dark);
+      font-size: 32px;
+      letter-spacing: -0.64px;
+    }
+  }
+}

@@ -1,0 +1,96 @@
+//- Секция контактов
+section.contacts
+  .container
+    h1.contacts__title Контакты
+    .contacts__inner.contacts-grid 
+      .contacts__item
+        .contacts__item-content
+          h3.contacts__item-title Склад Краснодар
+          p.contacts__item-description
+            | Склад Краснодар: 
+            | 350080, Краснодарский край, 
+            | г. Краснодар, ул. Производственная, д. 21
+          .contacts__item-info
+            h4.contacts__item-subtitle Контакты:
+            p.contacts__item-description
+                | Телефон:
+                a.contacts__item-link(href="tel:+78632232470") +7(863)223-24-70
+                br
+                | Отдел претензий:
+                a.contacts__item-link(href="mailto:pretenzia_krd@mdhost.biz") pretenzia_krd@mdhost.bizp
+                br
+                | Отдел продаж:
+                a.contacts__item-link(href="mailto:sales@organica-ug.ru") sales@organica-ug
+            h4.contacts__item-subtitle Регионы обслуживания:
+            p.contacts__item-description
+                | Краснодарский край, Республика Калмыкия, Республика Адыгея, 
+                | Республика Дагестан, Чеченская республика, Ставропольский край, 
+                | Республика Северная Осетия (Алания), Карачаево-Черкесская республика, 
+                | Кабардино-Балкарская Республика, Республика Ингушетия
+
+      .contacts__item
+        .contacts__item-content
+          h3.contacts__item-title Склад Воронеж
+          p.contacts__item-description
+            | Склад Воронеж: 
+            | 394090, Воронежская область, 
+            | г. Воронеж, ул. Новосибирская, д. 88б, помещение 1
+          .contacts__item-info
+            h4.contacts__item-subtitle Контакты:
+            p.contacts__item-description
+                | Телефон:
+                a.contacts__item-link(href="tel:+78632232470") +7(863)223-24-70
+                br
+                | Отдел претензий:
+                a.contacts__item-link(href="mailto:claim.vrn@rndhost.biz") claim.vrn@rndhost.biz
+                br
+                | Отдел продаж:
+                a.contacts__item-link(href="mailto:sales@organica-ug.ru") sales@organica-ug.ru
+            h4.contacts__item-subtitle Регионы обслуживания:
+            p.contacts__item-description 
+                | Рязанская область, Белгородская область, Тульская область, Липецкая область, 
+                | Тамбовская область, Орловкая область, Калужская область, Курская область, 
+                | Воронежская область, Брянская область, Саратовская область
+
+      .contacts__item
+        .contacts__item-content
+          h3.contacts__item-title Склад Ростов
+          p.contacts__item-description
+            | Склад Ростов: 
+            | 344064, Ростовская область, 
+            | г. Ростов-на-Дону, ул. Вавилова, д. 59Д
+          .contacts__item-info
+            h4.contacts__item-subtitle Контакты:
+            p.contacts__item-description
+                | Телефон:
+                a.contacts__item-link(href="tel:+78632232470") +7(863)223-24-70
+                br
+                | Отдел претензий:
+                a.contacts__item-link(href="mailto:akt@rndhost.biz") akt@rndhost.biz
+                br
+                | Отдел продаж:
+                a.contacts__item-link(href="mailto:sales@organica-ug.ru") sales@organica-ug.ru
+            h4.contacts__item-subtitle Регионы обслуживания:
+            p.contacts__item-description
+                | Республика Крым, Ростовская область
+
+      .form-section__form
+        h4.form-section__subtitle Хоти получать качественную продукцию?
+        p.form-section__desc Оставьте заявку и мы свяжемся с вами в ближайшее время
+        form.form.request-form(action="#" method="post" novalidate)
+          .request-form__row
+            input.input.input__transparent.request-form__input(type="text" name="name" placeholder="Имя" required)
+            input.input.input__transparent.request-form__input(type="email" name="email" placeholder="Почта" required)
+          .request-form__row
+            input.input.input__transparent.request-form__input(type="tel" name="phone" placeholder="Телефон" required)
+            input.input.input__transparent.request-form__input(type="text" name="company" placeholder="Название компании" required)
+          .request-form__agree
+            label.request-form__checkbox
+              input(type="checkbox" name="agree" required)
+              span Нажимая "Отправить", вы соглашаетесь с условиями 
+                a(href="#" target="_blank" rel="noopener") политики конфиденциальности 
+                | данного сайта
+          button.btn.request-form__submit(type="submit") Отправить заявку
+
+          .request-form__logo 
+            include ../icons/icon-logo

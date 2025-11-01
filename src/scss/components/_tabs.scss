@@ -27,6 +27,10 @@
       text-align: center;
     }
 
+    @media (max-width: 576px) {
+      padding: 8px;
+    }
+
     &:not(.is-active):hover {
       background: var(--color-primary-hover-subtle);
       border-color: var(--color-border);

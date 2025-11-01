@@ -38,6 +38,10 @@
   justify-content: space-between;
   gap: 24px;  
   padding: 24px 32px;
+
+  @media (max-width: 768px) {
+    padding: 16px 24px;
+  }
 }
 
 .modal__header {
@@ -48,6 +52,10 @@
 
 .modal__title {
   margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 8px;
+  }
 }
 
 .modal__close {
@@ -59,6 +67,11 @@
   justify-content: center;
   padding: 7px;
   cursor: pointer;
+
+  @media (max-width: 768px) {
+    top: 16px;
+    right: 16px;
+  }
 }
 
 @media (max-width: 576px) {
@@ -69,6 +82,10 @@
 .modal__logo {
   width: 20px;
   height: 32px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .modal__subheading {
@@ -103,10 +120,13 @@
 
 .modal-form__submit {
 //   width: 100%;
+
+  @media (max-width: 576px) {
+    width: 100%;
+  }
 }
 
 @media (max-width: 576px) {
-  .modal__content { padding: 20px; }
   .modal-form__row { grid-template-columns: 1fr; }
 }
 

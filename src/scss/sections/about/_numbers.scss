@@ -1,0 +1,89 @@
+/* Секция "Цифры компании" на странице О нас */
+.page-numbers {
+  padding: 64px 0;
+  background: var(--color-bg-primary);
+
+  @media (max-width: 1024px) {
+    padding: 48px 0 24px;
+  }
+
+
+  &__title {
+    margin-bottom: 32px;
+
+    @media (max-width: 768px) {
+      margin-bottom: 24px;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__card {
+    background: var(--color-primary-light-transparent); // Светло-зеленый фон карточки
+    border-radius: 8px;
+    padding: 16px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    @media (max-width: 768px) {
+      padding: 20px;
+      gap: 10px;
+
+      &:first-child {
+        order: 1;
+      }
+
+      &:nth-child(2) {
+        grid-column: span 2;
+      }
+
+      &:last-child {
+        grid-column: span 2;
+        order: 2;
+      }
+    }
+
+    @media (max-width: 576px) {
+      padding: 16px;
+      gap: 8px;
+    }
+  }
+
+  &__number {
+    color: var(--color-primary-dark);
+    font-size: 46px;
+    font-weight: 500;
+    letter-spacing: -1.38px;
+
+    @media (max-width: 1024px) {
+      font-size: 32px;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 24px;
+    }
+  }
+
+  &__label {
+    color: var(--color-primary-dark);
+    font-family: PT Sans, sans-serif;
+    font-size: 20px;
+    text-align: center;
+
+    @media (max-width: 1024px) {
+      font-size: 16px;
+    }
+  }
+}
+

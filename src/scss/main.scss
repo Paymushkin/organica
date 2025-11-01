@@ -20,10 +20,16 @@
 @use 'sections/partners' as *;
 @use 'sections/warehouse' as *;
 @use 'sections/about' as *;
+@use 'sections/about/hero' as *;
+@use 'sections/about/numbers' as *;
 @use 'sections/for-clients' as *;
 @use 'sections/form' as *;
 @use 'sections/footer' as *;
 @use 'sections/news' as *;
+@use 'sections/error-404' as *;
+@use 'sections/contacts' as *;
+@use 'sections/team' as *;
+@use 'sections/history' as *;
 @use 'sections/mobile-menu-bar' as *;
 @use 'components/mobile-menu' as *;
 
@@ -31,7 +37,19 @@
 
 // Основные стили для фиксированного header
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   padding-top: 80px; // Высота header + отступ
+  max-width: 100vw;
+  overflow-x: hidden;
+
+  > main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
   
   @media (max-width: 767px) {
     padding-top: 0; // На мобилке header не fixed, отступ не нужен

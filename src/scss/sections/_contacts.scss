@@ -1,0 +1,94 @@
+/* Секция контактов */
+.contacts {
+  padding: 64px 0;
+
+  @media (max-width: 768px) {
+    padding: 16px 0 48px;
+  }
+
+  &__title {
+    margin-bottom: 24px;
+    font-size: 40px;
+    font-weight: 500;
+    color: var(--color-primary-dark);
+    letter-spacing: -1.6px;
+
+    @media (max-width: 768px) {
+      font-size: 32px;
+      letter-spacing: -0.64px;
+    }
+  }
+
+  &__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+
+    @media (max-width: 576px) {
+      gap: 8px;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px 16px; 
+    background: var(--color-primary-light-transparent);
+    border-radius: 8px;
+
+    @media (max-width: 576px) {
+      padding: 12px;
+    }
+  }
+
+  &__item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    @media (max-width: 576px) {
+      gap: 12px;
+    }
+  }
+
+  &__item-title {
+    // margin-bottom: 16px;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--color-primary-dark);
+    letter-spacing: -2px;
+  }
+
+  &__item-description {
+    color: var(--color-primary-dark);
+  }
+
+  &__item-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+    &__item-subtitle {
+      margin-bottom: 16px;
+      color: var(--color-primary-dark);
+      font-size: 20px;
+      font-weight: 400;
+      letter-spacing: unset;
+    }
+
+    &__item-description {
+      color: var(--color-primary-dark);
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: unset;
+
+      &:not(:last-child) {
+        margin-bottom: 16px;
+      }
+    }
+}   

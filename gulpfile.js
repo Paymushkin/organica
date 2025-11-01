@@ -17,6 +17,8 @@ const changed = require('gulp-changed');
 const cache = require('gulp-cached');
 const remember = require('gulp-remember');
 const os = require('os');
+const fs = require('fs');
+const path = require('path');
 
 // Получение переменной окружения
 const env = process.env.env || 'development';
@@ -130,6 +132,13 @@ function copyCSSLibs() {
     .pipe(dest(paths.dist.css));
 }
 
+// Favicon
+function copyFavicon() {
+  return src('src/images/favicon/**/*')
+    .pipe(plumber())
+    .pipe(dest('dist/'));
+}
+
 // Получение IP-адреса
 function getLocalIP() {
   const interfaces = os.networkInterfaces();
@@ -149,7 +158,62 @@ function serve() {
   
   browserSync.init({
     server: {
-      baseDir: 'dist'
+      baseDir: 'dist',
+      middleware: [
+        // Обработка роутов для страниц
+        function (req, res, next) {
+          const url = req.url.split('?')[0]; // Убираем query параметры
+          
+          // Список страниц без расширения
+          const routes = {
+            '/404': '404.html',
+            '/contacts': 'contacts.html',
+            '/about': 'about.html'
+          };
+          
+          // Если запрос к известному роуту - отдаем соответствующий HTML
+          if (routes[url] || routes[url + '/']) {
+            const fileName = routes[url] || routes[url + '/'];
+            const filePath = path.join(__dirname, 'dist', fileName);
+            if (fs.existsSync(filePath)) {
+              const fileContent = fs.readFileSync(filePath, 'utf8');
+              res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+              res.end(fileContent);
+              return;
+            }
+          }
+          next();
+        },
+        // Обработка несуществующих страниц - редирект на 404
+        function (req, res, next) {
+          const url = req.url.split('?')[0]; // Убираем query параметры
+          const filePath = path.join(__dirname, 'dist', url === '/' ? 'index.html' : url + '.html');
+          
+          // Если файл не существует и это не статический ресурс
+          const knownRoutes = ['/404', '/404/', '/contacts', '/contacts/', '/about', '/about/'];
+          if (!fs.existsSync(filePath) && 
+              !url.startsWith('/css/') && 
+              !url.startsWith('/js/') && 
+              !url.startsWith('/images/') && 
+              !url.startsWith('/fonts/') &&
+              !url.match(/\.(png|jpg|jpeg|gif|svg|ico|css|js|woff|woff2|ttf|eot)$/i) &&
+              !knownRoutes.includes(url)) {
+            const error404Path = path.join(__dirname, 'dist', '404.html');
+            if (fs.existsSync(error404Path)) {
+              const fileContent = fs.readFileSync(error404Path, 'utf8');
+              res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
+              res.end(fileContent);
+              return;
+            }
+          }
+          next();
+        },
+        // Отключаем CSP для разработки, чтобы Browser Sync мог работать
+        function (req, res, next) {
+          res.setHeader('Content-Security-Policy', "default-src 'self' 'unsafe-inline' 'unsafe-eval' *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src 'self' 'unsafe-inline' *;");
+          next();
+        }
+      ]
     },
     notify: false,
     open: false,
@@ -228,7 +292,8 @@ const build = series(
     optimizeImages,
     createWebP,
     copyFonts,
-    copyCSSLibs
+    copyCSSLibs,
+    copyFavicon
   )
 );
 

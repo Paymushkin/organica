@@ -9,9 +9,7 @@ mixin modal(name, options)
       if title
         .modal__header
           .modal__title= title
-          button.modal__close(type="button" data-modal-close aria-label=closeLabel)
       else
-        button.modal__close(type="button" data-modal-close aria-label=closeLabel)
       .modal__content
         block
 

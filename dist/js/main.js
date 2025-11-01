@@ -170,9 +170,26 @@ function initModals() {
   function openModal(name) {
     const modal = document.querySelector(`[data-modal="${name}"]`);
     if (!modal) return;
+    
+    // Закрываем мобильное меню, если оно открыто
+    const mobileMenu = document.querySelector('.mobile-menu');
+    if (mobileMenu && mobileMenu.classList.contains('mobile-menu--open')) {
+      mobileMenu.classList.remove('mobile-menu--open');
+      const header = document.querySelector('.header');
+      if (header) {
+        header.style.display = '';
+      }
+    }
+    
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
     body.style.overflow = 'hidden';
+    
+    // Сбрасываем класс валидации при открытии попапа
+    const form = modal.querySelector('.modal-form');
+    if (form) {
+      form.classList.remove('was-validated');
+    }
   }
 
   function closeModal(modal) {
@@ -206,6 +223,69 @@ function initModals() {
     if (e.key === 'Escape') {
       const opened = document.querySelector('.modal.is-open');
       if (opened) closeModal(opened);
+    }
+  });
+
+  // Обработка отправки формы (в попапе и на странице)
+  document.addEventListener('submit', (e) => {
+    const modalForm = e.target.closest('.modal-form');
+    const pageForm = e.target.closest('.request-form');
+    const form = modalForm || pageForm;
+    
+    if (!form) return;
+
+    e.preventDefault();
+
+    // Добавляем класс для показа ошибок валидации
+    form.classList.add('was-validated');
+
+    // Проверка валидности формы
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    // Здесь можно добавить отправку данных через AJAX
+    // Например:
+    // const formData = new FormData(form);
+    // fetch('/api/submit', { method: 'POST', body: formData })
+    //   .then(response => response.json())
+    //   .then(data => { ... })
+    //   .catch(error => { ... });
+
+    // Временная заглушка: просто выводим сообщение
+    console.log('Форма отправлена:', new FormData(form));
+    
+    // Можно показать сообщение об успехе
+    // alert('Заявка успешно отправлена!');
+    
+    // Если форма в попапе - закрываем попап
+    if (modalForm) {
+      const modal = form.closest('.modal');
+      if (modal) {
+        closeModal(modal);
+      }
+    }
+    
+    // Сбрасываем класс валидации и форму
+    form.classList.remove('was-validated');
+    form.reset();
+  });
+
+  // Убираем красную обводку при изменении чекбокса
+  document.addEventListener('change', (e) => {
+    const checkbox = e.target;
+    if (checkbox.type === 'checkbox') {
+      const modalForm = checkbox.closest('.modal-form');
+      const pageForm = checkbox.closest('.request-form');
+      const form = modalForm || pageForm;
+      
+      if (form && checkbox.checked && form.classList.contains('was-validated')) {
+        // Если чекбокс отмечен, проверяем всю форму
+        if (form.checkValidity()) {
+          form.classList.remove('was-validated');
+        }
+      }
     }
   });
 }
@@ -542,19 +622,32 @@ function initHeaderScrollFill() {
   const header = document.querySelector('.header');
   if (!header) return;
 
-  const toggleOnScroll = () => {
-    if (window.scrollY >= 100) {
+  let ticking = false;
+
+  const updateHeader = () => {
+    const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+    
+    if (scrollY >= 100) {
       header.classList.add('header--scrolled');
     } else {
       header.classList.remove('header--scrolled');
     }
+    
+    ticking = false;
+  };
+
+  const onScroll = () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateHeader);
+      ticking = true;
+    }
   };
 
   // Первичная установка
-  toggleOnScroll();
+  updateHeader();
 
-  // Слушатели
-  window.addEventListener('scroll', utils.throttle(toggleOnScroll, 50), { passive: true });
+  // Слушатель скролла с оптимизацией через requestAnimationFrame
+  window.addEventListener('scroll', onScroll, { passive: true });
 }
 
 // Плашка меню для мобильной версии (появляется при скролле)
