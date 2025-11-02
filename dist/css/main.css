@@ -1805,7 +1805,7 @@ address {
   right: -100px;
   z-index: 2;
 }
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .warehouse__decoration {
     display: none;
   }
@@ -1914,7 +1914,7 @@ address {
   left: 0;
   z-index: 2;
 }
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .about__decoration {
     display: none;
   }
@@ -2115,6 +2115,11 @@ address {
   top: 0;
   right: 0;
   z-index: -1;
+}
+@media (max-width: 1024px) {
+  .for-clients__decoration {
+    display: none;
+  }
 }
 .for-clients__inner {
   display: flex;
@@ -2518,7 +2523,7 @@ address {
   left: 0;
   z-index: -1;
 }
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .news__decoration {
     display: none;
   }
