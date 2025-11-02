@@ -5,7 +5,7 @@
   display: flex;
   justify-content: flex-start;
   overflow: hidden;
-  margin-top: -80px; // Компенсируем padding-top у body
+  // margin-top: -80px; // Компенсируем padding-top у body
   padding: 200px 0 80px; // Добавляем обратно отступ для контента
 
   @media (max-width: 1024px) {
@@ -14,8 +14,8 @@
   }
 
   @media (max-width: 767px) {
-    margin-top: -56px;
-    padding: 70px 0 20px;
+    // margin-top: -56px;
+    padding: 150px 0 20px;
     min-height: unset;
   }
 

@@ -1273,7 +1273,6 @@ address {
   display: flex;
   justify-content: flex-start;
   overflow: hidden;
-  margin-top: -80px;
   padding: 200px 0 80px;
 }
 @media (max-width: 1024px) {
@@ -1284,8 +1283,7 @@ address {
 }
 @media (max-width: 767px) {
   .hero {
-    margin-top: -56px;
-    padding: 70px 0 20px;
+    padding: 150px 0 20px;
     min-height: unset;
   }
 }
@@ -3383,6 +3381,12 @@ body > main {
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
+  margin-top: -80px;
+}
+@media (max-width: 768px) {
+  body > main {
+    margin-top: -64px;
+  }
 }
 @media (max-width: 767px) {
   body {
