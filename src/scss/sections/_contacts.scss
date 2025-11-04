@@ -1,10 +1,5 @@
 /* Секция контактов */
 .contacts {
-  padding: 64px 0;
-
-  @media (max-width: 768px) {
-    padding: 16px 0 48px;
-  }
 
   &__title {
     margin-bottom: 24px;
