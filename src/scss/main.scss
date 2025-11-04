@@ -90,6 +90,10 @@ body {
   &.page-home {
     margin-top: -107px;
 
+    @media (max-width: 1024px) {
+      margin-top: -85px;
+    }
+
     @media (max-width: 768px) {
       margin-top: 0;
     }
