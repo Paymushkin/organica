@@ -1,14 +1,5 @@
 /* Секция формы */
 .form-section {
-  padding: 64px 0;
-
-  @media (max-width: 768px) {
-    padding: 48px 0;
-  }
-
-  @media (max-width: 576px) {
-    padding: 24px 0 48px;
-  }
   
   &__inner {
     display: flex;

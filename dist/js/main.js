@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
   initNewsResponsiveSliders();
   initHeaderScrollFill();
   initModals();
+  initFaqDetailsAnimation();
 });
 
 // Мобильное меню (полноэкранное)
@@ -289,6 +290,7 @@ function initModals() {
     }
   });
 }
+
 
 // Адаптивные слайдеры новостей: <=768 включаем Swiper, >768 выключаем
 function initNewsResponsiveSliders() {
@@ -627,7 +629,7 @@ function initHeaderScrollFill() {
   const updateHeader = () => {
     const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
     
-    if (scrollY >= 100) {
+    if (scrollY >= 20) {
       header.classList.add('header--scrolled');
     } else {
       header.classList.remove('header--scrolled');
@@ -699,6 +701,65 @@ function initMobileMenuBar() {
       updateVisibility();
     }
   }, 150));
+}
+
+// Плавная анимация открытия/закрытия для details в секции FAQ
+function initFaqDetailsAnimation() {
+  const detailsList = document.querySelectorAll('.faq details');
+  if (!detailsList.length) return;
+
+  detailsList.forEach((det) => {
+    const summary = det.querySelector('summary');
+    const answer = det.querySelector('.faq__answer');
+    if (!summary || !answer) return;
+
+    // Инициализация исходного состояния
+    if (det.open) {
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+      answer.style.opacity = '1';
+    } else {
+      answer.style.maxHeight = '0px';
+      answer.style.opacity = '0';
+    }
+
+    summary.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      // Закрытие
+      if (det.open) {
+        // фиксируем текущую высоту, затем анимируем к 0
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+        answer.style.opacity = '1';
+        requestAnimationFrame(() => {
+          answer.style.maxHeight = '0px';
+          answer.style.opacity = '0';
+        });
+        const onCloseEnd = (ev) => {
+          if (ev.propertyName !== 'max-height') return;
+          answer.removeEventListener('transitionend', onCloseEnd);
+          det.open = false;
+        };
+        answer.addEventListener('transitionend', onCloseEnd);
+      } else {
+        // Открытие
+        det.open = true;
+        // старт с 0 к нужной высоте
+        answer.style.maxHeight = '0px';
+        answer.style.opacity = '0';
+        requestAnimationFrame(() => {
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          answer.style.opacity = '1';
+        });
+        const onOpenEnd = (ev) => {
+          if (ev.propertyName !== 'max-height') return;
+          answer.removeEventListener('transitionend', onOpenEnd);
+          // опционально снять максимум, чтобы контент с динамической высотой не обрезался после открытии
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        };
+        answer.addEventListener('transitionend', onOpenEnd);
+      }
+    });
+  });
 }
 
 // Утилиты

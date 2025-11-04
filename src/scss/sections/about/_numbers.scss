@@ -1,12 +1,5 @@
 /* Секция "Цифры компании" на странице О нас */
 .page-numbers {
-  padding: 64px 0;
-  background: var(--color-bg-primary);
-
-  @media (max-width: 1024px) {
-    padding: 48px 0 24px;
-  }
-
 
   &__title {
     margin-bottom: 32px;

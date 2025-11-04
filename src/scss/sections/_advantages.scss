@@ -1,0 +1,90 @@
+/* Секция преимуществ */
+.advantages {
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px 8px;
+    padding: 24px 16px;
+    border-radius: 8px;
+    background-color: var(--color-primary-light-transparent);
+
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      padding: 0;
+      background-color: transparent;
+    }
+
+    @media (max-width: 576px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__item {
+    position: relative;
+    padding: 24px 16px 36px;
+    min-height: 137px;
+    color: var(--color-primary-dark);
+    background-color: rgba(65, 143, 85, 0.20);
+    border-radius: 8px;
+    font-family: PT-sans, sans-serif;
+
+    @media (max-width: 768px) {
+      padding: 16px 12px 52px;
+      min-height: auto;
+    }
+
+    &--title {
+      grid-row: 1 / 3;
+      padding: 0 0 16px 0;
+      min-height: auto;
+      background-color: transparent;
+
+      .advantages__list--suppliers & {
+        grid-row: 1 / 2;
+      }
+
+      @media (max-width: 1024px) {
+        grid-row: 1 / 2;
+        grid-column: span 2;
+      }
+
+      @media (max-width: 576px) {
+        grid-column: auto;
+      }
+    }
+  }
+
+  &__description {
+    max-width: 300px;
+    font-family: PT Sans, sans-serif;
+  }
+
+  &__number {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: var(--color-primary-light-transparent);
+    color: var(--color-primary-dark);
+    border-radius: 8px 0 0 0;
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.84px;
+    line-height: 1;
+
+    @media (max-width: 768px) {
+      width: 86px;
+      height: 36px;
+      background-color: var(--color-bg-primary);
+      font-size: 24px;
+    }
+  }
+} 
+

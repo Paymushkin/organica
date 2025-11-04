@@ -168,7 +168,9 @@ function serve() {
           const routes = {
             '/404': '404.html',
             '/contacts': 'contacts.html',
-            '/about': 'about.html'
+            '/about': 'about.html',
+            '/clients': 'clients.html',
+            '/suppliers': 'suppliers.html'
           };
           
           // Если запрос к известному роуту - отдаем соответствующий HTML
@@ -190,7 +192,7 @@ function serve() {
           const filePath = path.join(__dirname, 'dist', url === '/' ? 'index.html' : url + '.html');
           
           // Если файл не существует и это не статический ресурс
-          const knownRoutes = ['/404', '/404/', '/contacts', '/contacts/', '/about', '/about/'];
+          const knownRoutes = ['/404', '/404/', '/contacts', '/contacts/', '/about', '/about/', '/clients', '/clients/', '/suppliers', '/suppliers/'];
           if (!fs.existsSync(filePath) && 
               !url.startsWith('/css/') && 
               !url.startsWith('/js/') && 
