@@ -3,27 +3,29 @@
 
   &__list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     gap: 16px 8px;
     padding: 24px 16px;
     border-radius: 8px;
     background-color: var(--color-primary-light-transparent);
+    justify-content: stretch;
 
 
     @media (max-width: 768px) {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 8px;
       padding: 0;
       background-color: transparent;
     }
 
     @media (max-width: 576px) {
-      grid-template-columns: 1fr;
+      grid-template-columns: 2fr;
     }
   }
 
   &__item {
     position: relative;
+    grid-column: span 2;
     padding: 24px 16px 36px;
     min-height: 137px;
     color: var(--color-primary-dark);
@@ -53,6 +55,40 @@
 
       @media (max-width: 576px) {
         grid-column: auto;
+      }
+    }
+
+    &--text {
+      grid-column: span 4;
+      padding: 0 0 16px 0;
+      min-height: auto;
+      background-color: transparent;
+      font-size: 24px;
+
+      @media (max-width: 1024px) {
+        font-size: 16px;
+      }
+
+      @media (max-width: 768px) {
+        grid-column: span 2;
+      }
+    }
+
+    &.span-3-item {
+      grid-column: span 3;
+
+      @media (max-width: 768px) {
+        grid-column: span 2;
+
+        &:last-child {
+          grid-column: span 4;
+        }
+      }
+
+      @media (max-width: 576px) {
+        &:last-child {
+          grid-column: span 2;
+        }
       }
     }
   }
@@ -87,4 +123,3 @@
     }
   }
 } 
-

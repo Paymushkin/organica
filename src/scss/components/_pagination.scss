@@ -1,0 +1,77 @@
+/* Компонент пагинации */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 48px;
+
+  @media (max-width: 768px) {
+    margin-top: 24px;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    color: var(--color-primary-dark);
+    font-family: PT Sans, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    &:hover:not(&--active) {
+      background: var(--color-primary-light-transparent);
+    }
+
+    &--active {
+      background: var(--color-primary-light-transparent);
+      color: var(--color-primary-dark);
+      font-weight: 500;
+      cursor: default;
+    }
+
+    &--next {
+      gap: 12px;
+      padding: 0 12px;
+    }
+  }
+
+  &__ellipsis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    color: rgba(4, 63, 46, 0.50);
+    font-family: PT Sans, sans-serif;
+    font-size: 16px;
+  }
+
+  &__next-text {
+    font-family: PT Sans, sans-serif;
+    font-size: 16px;
+  }
+}
+

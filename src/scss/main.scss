@@ -13,6 +13,7 @@
 @use 'components/tabs' as *;
 @use 'components/slider-controls' as *;
 @use 'components/modal' as *;
+@use 'components/pagination' as *;
 @use 'sections/header' as *;
 @use 'sections/hero' as *;
 @use 'components/form' as *;
@@ -35,6 +36,9 @@
 @use 'sections/advantages' as *;
 @use 'sections/account' as *;
 @use 'sections/suppliers/hero' as *;
+@use 'sections/vacancies' as *;
+@use 'sections/news/hero' as *;
+@use 'sections/news/article' as *;
 @use 'sections/mobile-menu-bar' as *;
 @use 'components/mobile-menu' as *;
 

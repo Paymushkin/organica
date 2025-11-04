@@ -11,7 +11,8 @@
     "build:images": "gulp build:images --env=production",
     "watch": "gulp watch --env=development",
     "clean": "gulp clean",
-    "serve": "gulp serve --env=development"
+    "serve": "gulp serve --env=development",
+    "deploy": "gulp build --env=production"
   },
   "devDependencies": {
     "browser-sync": "^2.29.3",

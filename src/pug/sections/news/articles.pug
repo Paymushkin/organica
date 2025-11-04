@@ -1,0 +1,198 @@
+//- Секция статей/новостей
+section.articles
+  .container
+    //- Табы
+    .tabs(data-tabs="news")
+      .tabs__list
+        button.tabs__tab.is-active(type="button" data-tab="company") Новости компании
+        button.tabs__tab(type="button" data-tab="industry") Новости индустрии
+
+      .tabs__panels
+        //- Новости компании
+        .tabs__panel.is-active(data-tab-panel="company")
+          .articles__grid
+            a.news-card(href="/article")
+              .news-card__image
+                img(src="images/news/item-1.png" alt="Новость компании")
+              .news-card__body
+                time.news-card__date 14 сентября 2025
+                p.news-card__text Значимость этих проблем настолько очевидна, что консультация широким активом требуют определения и уточнения форм развития.
+                span.news-card__link Читать полностью
+                  span.news-card__chevron
+                    include ../../icons/icon-chevron
+
+            a.news-card(href="/article")
+              .news-card__image
+                img(src="images/news/item-2.png" alt="Новость компании")
+              .news-card__body
+                time.news-card__date 14 сентября 2025
+                p.news-card__text Значимость этих проблем настолько очевидна, что консультация широким активом требуют определения и уточнения форм развития.
+                span.news-card__link Читать полностью
+                  span.news-card__chevron
+                    include ../../icons/icon-chevron
+
+            a.news-card(href="/article")
+              .news-card__image
+                img(src="images/news/item-3.png" alt="Новость компании")
+              .news-card__body
+                time.news-card__date 14 сентября 2025
+                p.news-card__text Значимость этих проблем настолько очевидна, что консультация широким активом требуют определения и уточнения форм развития.
+                span.news-card__link Читать полностью
+                  span.news-card__chevron
+                    include ../../icons/icon-chevron
+
+            a.news-card(href="/article")
+              .news-card__image
+                img(src="images/news/item-4.png" alt="Новость компании")
+              .news-card__body
+                time.news-card__date 14 сентября 2025
+                p.news-card__text Значимость этих проблем настолько очевидна, что консультация широким активом требуют определения и уточнения форм развития.
+                span.news-card__link Читать полностью
+                  span.news-card__chevron
+                    include ../../icons/icon-chevron
+
+            a.news-card(href="/article")
+              .news-card__image
+                img(src="images/news/item-5.png" alt="Новость компании")
+              .news-card__body
+                time.news-card__date 14 сентября 2025
+                p.news-card__text Значимость этих проблем настолько очевидна, что консультация широким активом требуют определения и уточнения форм развития.
+                span.news-card__link Читать полностью
+                  span.news-card__chevron
+                    include ../../icons/icon-chevron
+
+            a.news-card(href="/article")
+              .news-card__image
+                img(src="images/news/item-6.png" alt="Новость компании")
+              .news-card__body
+                time.news-card__date 14 сентября 2025
+                p.news-card__text Значимость этих проблем настолько очевидна, что консультация широким активом требуют определения и уточнения форм развития.
+                span.news-card__link Читать полностью
+                  span.news-card__chevron
+                    include ../../icons/icon-chevron
+
+            a.news-card(href="/article")
+              .news-card__image
+                img(src="images/news/item-7.png" alt="Новость компании")
+              .news-card__body
+                time.news-card__date 14 сентября 2025
+                p.news-card__text Значимость этих проблем настолько очевидна, что консультация широким активом требуют определения и уточнения форм развития.
+                span.news-card__link Читать полностью
+                  span.news-card__chevron
+                    include ../../icons/icon-chevron
+
+            a.news-card(href="/article")
+              .news-card__image
+                img(src="images/news/item-8.png" alt="Новость компании")
+              .news-card__body
+                time.news-card__date 14 сентября 2025
+                p.news-card__text Значимость этих проблем настолько очевидна, что консультация широким активом требуют определения и уточнения форм развития.
+                span.news-card__link Читать полностью
+                  span.news-card__chevron
+                    include ../../icons/icon-chevron
+
+            a.news-card(href="/article")
+              .news-card__image
+                img(src="images/news/item-9.png" alt="Новость компании")
+              .news-card__body
+                time.news-card__date 14 сентября 2025
+                p.news-card__text Значимость этих проблем настолько очевидна, что консультация широким активом требуют определения и уточнения форм развития.
+                span.news-card__link Читать полностью
+                  span.news-card__chevron
+                    include ../../icons/icon-chevron
+          include ../../components/pagination.pug
+
+        //- Новости индустрии
+        .tabs__panel(data-tab-panel="industry")
+          .articles__grid
+            a.news-card(href="/article")
+              .news-card__image
+                img(src="images/news/item-7.png" alt="Новость индустрии")
+              .news-card__body
+                time.news-card__date 14 сентября 2025
+                p.news-card__text Значимость этих проблем настолько очевидна, что консультация широким активом требуют определения и уточнения форм развития.
+                span.news-card__link Читать полностью
+                  span.news-card__chevron
+                    include ../../icons/icon-chevron
+
+            a.news-card(href="/article")
+              .news-card__image
+                img(src="images/news/item-8.png" alt="Новость индустрии")
+              .news-card__body
+                time.news-card__date 14 сентября 2025
+                p.news-card__text Значимость этих проблем настолько очевидна, что консультация широким активом требуют определения и уточнения форм развития.
+                span.news-card__link Читать полностью
+                  span.news-card__chevron
+                    include ../../icons/icon-chevron
+
+            a.news-card(href="/article")
+              .news-card__image
+                img(src="images/news/item-9.png" alt="Новость индустрии")
+              .news-card__body
+                time.news-card__date 14 сентября 2025
+                p.news-card__text Значимость этих проблем настолько очевидна, что консультация широким активом требуют определения и уточнения форм развития.
+                span.news-card__link Читать полностью
+                  span.news-card__chevron
+                    include ../../icons/icon-chevron
+
+            a.news-card(href="/article")
+              .news-card__image
+                img(src="images/news/item-4.png" alt="Новость компании")
+              .news-card__body
+                time.news-card__date 14 сентября 2025
+                p.news-card__text Значимость этих проблем настолько очевидна, что консультация широким активом требуют определения и уточнения форм развития.
+                span.news-card__link Читать полностью
+                  span.news-card__chevron
+                    include ../../icons/icon-chevron
+
+            a.news-card(href="/article")
+              .news-card__image
+                img(src="images/news/item-5.png" alt="Новость компании")
+              .news-card__body
+                time.news-card__date 14 сентября 2025
+                p.news-card__text Значимость этих проблем настолько очевидна, что консультация широким активом требуют определения и уточнения форм развития.
+                span.news-card__link Читать полностью
+                  span.news-card__chevron
+                    include ../../icons/icon-chevron
+
+            a.news-card(href="/article")
+              .news-card__image
+                img(src="images/news/item-6.png" alt="Новость компании")
+              .news-card__body
+                time.news-card__date 14 сентября 2025
+                p.news-card__text Значимость этих проблем настолько очевидна, что консультация широким активом требуют определения и уточнения форм развития.
+                span.news-card__link Читать полностью
+                  span.news-card__chevron
+                    include ../../icons/icon-chevron
+
+            a.news-card(href="/article")
+              .news-card__image
+                img(src="images/news/item-1.png" alt="Новость компании")
+              .news-card__body
+                time.news-card__date 14 сентября 2025
+                p.news-card__text Значимость этих проблем настолько очевидна, что консультация широким активом требуют определения и уточнения форм развития.
+                span.news-card__link Читать полностью
+                  span.news-card__chevron
+                    include ../../icons/icon-chevron
+
+            a.news-card(href="/article")
+              .news-card__image
+                img(src="images/news/item-2.png" alt="Новость компании")
+              .news-card__body
+                time.news-card__date 14 сентября 2025
+                p.news-card__text Значимость этих проблем настолько очевидна, что консультация широким активом требуют определения и уточнения форм развития.
+                span.news-card__link Читать полностью
+                  span.news-card__chevron
+                    include ../../icons/icon-chevron
+
+            a.news-card(href="/article")
+              .news-card__image
+                img(src="images/news/item-3.png" alt="Новость компании")
+              .news-card__body
+                time.news-card__date 14 сентября 2025
+                p.news-card__text Значимость этих проблем настолько очевидна, что консультация широким активом требуют определения и уточнения форм развития.
+                span.news-card__link Читать полностью
+                  span.news-card__chevron
+                    include ../../icons/icon-chevron
+
+          include ../../components/pagination.pug

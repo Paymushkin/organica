@@ -1,0 +1,61 @@
+.page-news {
+
+  &__hero-content {
+    position: relative;
+  }
+
+  &__hero-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    font-size: 0px;
+
+    @media (max-width: 768px) {
+      position: relative;
+      margin-bottom: 20px;
+      color: var(--color-primary-dark);
+      font-size: 32px;
+      letter-spacing: -0.64px;
+    }
+  }
+
+  &__hero-image {
+    min-width: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: 768px) {
+      margin-bottom: 16px;
+    }
+  }
+
+  &__hero-subtitle {
+    display: none;
+    margin-bottom: 8px;
+    color: var(--color-primary-dark);
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: -2px;
+
+    @media (max-width: 576px) {
+      display: block;
+    }
+  }
+
+  &__hero-description {
+    display: none;
+    margin-bottom: 24px;
+    font-family: PT-sans, sans-serif;
+
+    @media (max-width: 576px) {
+      display: block;
+    }
+  }
+}
+
