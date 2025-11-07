@@ -4,5 +4,14 @@ section.page-about
     .page-about__hero-content
       h1.page-about__hero-title О компании
       picture.page-about__hero-image
+        source(type="image/webp" media="(max-width: 576px)" srcset="images/about/hero-mob.webp")
+        source(type="image/webp" srcset="images/about/hero2.webp")
         source(media="(max-width: 576px)" srcset="images/about/hero-mob.png")
-        img(src="images/about/hero2.png" alt="О компании" loading="lazy")
+        img(
+          src="images/about/hero2.png"
+          alt="О компании"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          sizes="(max-width: 576px) 100vw, 100vw"
+        )

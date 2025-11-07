@@ -16,6 +16,7 @@
     <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="preload" as="image" href="images/about/hero2.webp" imagesrcset="images/about/hero-mob.webp 576w, images/about/hero2.webp 1440w" imagesizes="(max-width: 576px) 100vw, 100vw" type="image/webp" fetchpriority="high">
   </head>
   <body class="about-page">
     <header class="header">
@@ -94,7 +95,9 @@
           <div class="page-about__hero-content">
             <h1 class="page-about__hero-title">О компании</h1>
             <picture class="page-about__hero-image">
-              <source media="(max-width: 576px)" srcset="images/about/hero-mob.webp"><img src="images/about/hero2.webp" alt="О компании" loading="lazy">
+              <source type="image/webp" media="(max-width: 576px)" srcset="images/about/hero-mob.webp">
+              <source type="image/webp" srcset="images/about/hero2.webp">
+              <source media="(max-width: 576px)" srcset="images/about/hero-mob.webp"><img src="images/about/hero2.webp" alt="О компании" loading="eager" fetchpriority="high" decoding="async" sizes="(max-width: 576px) 100vw, 100vw">
             </picture>
           </div>
         </div>
