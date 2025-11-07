@@ -19,9 +19,11 @@ const remember = require('gulp-remember');
 const os = require('os');
 const fs = require('fs');
 const path = require('path');
+const replace = require('gulp-replace');
 
 // Получение переменной окружения
-const env = process.env.env || 'development';
+const envArg = process.argv.find((arg) => arg.startsWith('--env='));
+const env = process.env.env || (envArg ? envArg.split('=')[1] : 'development');
 const isProduction = env === 'production';
 const isDevelopment = env === 'development';
 
@@ -59,8 +61,10 @@ function compilePug() {
   return src('src/pug/pages/*.pug')
     .pipe(plumber())
     .pipe(pug({
-      pretty: !isProduction
+      pretty: true
     }))
+    .pipe(gulpif(isProduction, replace(/((?:srcset|src|data-src)=["'])(images\/[^"']+)\.(png|jpe?g)(["'])/g, '$1$2.webp$4')))
+    .pipe(gulpif(isProduction, replace(/url\((['"]?)(images\/[^'"()]+)\.(png|jpe?g)(['"]?)\)/g, 'url($1$2.webp$4)')))
     .pipe(dest(paths.dist.html));
 }
 
@@ -75,16 +79,23 @@ function compileSCSS() {
       silenceDeprecations: ['legacy-js-api', 'import'] // Отключаем устаревшие предупреждения
     }).on('error', sass.logError))
     .pipe(autoprefixer())
+    .pipe(gulpif(isProduction, replace(/(url\(["']?)([^"')]+)\.(png|jpe?g)([^"')]*["']?\))/g, (match, prefix, filepath, ext, suffix) => {
+      if (filepath.startsWith('data:')) {
+        return match;
+      }
+      return `${prefix}${filepath}.webp${suffix}`;
+    })))
     .pipe(gulpif(isProduction, cleanCSS()))
     .pipe(gulpif(isDevelopment, sourcemaps.write('.')))
     .pipe(dest(paths.dist.css));
 }
 
-// JavaScript
-function compileJS() {
+// JavaScript: общий бандл
+function compileMainJS() {
   return src([
-    'src/js/libraries/swiper.min.js',
-    'src/js/**/*.js'
+    'src/js/**/*.js',
+    '!src/js/libraries/**',
+    '!src/js/sliders.js'
   ])
     .pipe(plumber())
     .pipe(gulpif(isDevelopment, sourcemaps.init()))
@@ -93,6 +104,22 @@ function compileJS() {
     .pipe(gulpif(isDevelopment, sourcemaps.write('.')))
     .pipe(dest(paths.dist.js));
 }
+
+// JavaScript: управление слайдерами (включая библиотеку Swiper)
+function compileSlidersJS() {
+  return src([
+    'src/js/libraries/swiper.min.js',
+    'src/js/sliders.js'
+  ])
+    .pipe(plumber())
+    .pipe(gulpif(isDevelopment, sourcemaps.init()))
+    .pipe(concat('sliders.js'))
+    .pipe(gulpif(isProduction, uglify()))
+    .pipe(gulpif(isDevelopment, sourcemaps.write('.')))
+    .pipe(dest(paths.dist.js));
+}
+
+const compileJS = parallel(compileMainJS, compileSlidersJS);
 
 // Изображения с кэшированием
 function optimizeImages() {

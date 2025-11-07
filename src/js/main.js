@@ -10,8 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
   initSmoothScroll();
   initLazyLoading();
   initTabs();
-  initHeroSwiper();
-  initNewsResponsiveSliders();
   initHeaderScrollFill();
   initModals();
   initFaqDetailsAnimation();
@@ -226,144 +224,6 @@ function initModals() {
 }
 
 
-// Адаптивные слайдеры новостей: <=768 включаем Swiper, >768 выключаем
-function initNewsResponsiveSliders() {
-  // Глобальное хранилище экземпляров, чтобы было доступно из initTabs
-  const instances = window.newsSwiperInstances || new Map();
-  window.newsSwiperInstances = instances;
-
-  function getAllContainers() {
-    // Получаем все слайдеры (во всех табах)
-    return Array.from(document.querySelectorAll('.news__slider .swiper'));
-  }
-
-  function enable(swiperEl) {
-    if (instances.has(swiperEl)) return; // уже включен
-    
-    const sliderId = swiperEl.getAttribute('data-news-slider');
-    const prevBtn = document.querySelector(`[data-news-prev="${sliderId}"]`);
-    const nextBtn = document.querySelector(`[data-news-next="${sliderId}"]`);
-    const container = swiperEl.closest('.news__slider');
-    // Зафиксируем текущую высоту контейнера на время инициализации, чтобы избежать скачка
-    const containerHeight = container ? container.offsetHeight : 0;
-    if (container && containerHeight > 0) {
-      container.style.minHeight = containerHeight + 'px';
-    }
-    // Не скрываем слайдер, избегаем моргания при первом показе
-    
-    const instance = new Swiper(swiperEl, {
-      slidesPerView: 1,
-      spaceBetween: 12,
-      autoHeight: true,
-      observer: true,
-      observeParents: true,
-      preloadImages: false,
-      lazy: {
-        loadPrevNext: true,
-      },
-      breakpoints: {
-        576: { slidesPerView: 2, spaceBetween: 12 },
-      },
-      // управление жестами/клавиатурой
-      keyboard: { enabled: true },
-      pagination: false,
-      navigation: {
-        nextEl: nextBtn,
-        prevEl: prevBtn,
-      },
-      watchOverflow: true,
-      on: {
-        init: function() {
-          updateNewsSlideCounter(this, sliderId);
-          resetNewsProgressBar(sliderId);
-          // После инициализации показываем слайдер и снимаем фиксацию высоты с небольшой задержкой
-          requestAnimationFrame(() => {
-            setTimeout(() => {
-              if (container) container.style.minHeight = '';
-              this.updateAutoHeight(200);
-            }, 100);
-          });
-        },
-        slideChange: function() {
-          updateNewsSlideCounter(this, sliderId);
-        },
-        slideChangeTransitionEnd: function() {
-          resetNewsProgressBar(sliderId);
-        }
-      }
-    });
-    instances.set(swiperEl, instance);
-  }
-
-  // Функция обновления счетчика слайдов новостей
-  function updateNewsSlideCounter(swiper, sliderId) {
-    const currentSlideEl = document.querySelector(`[data-news-nav="${sliderId}"] .news__current-slide`);
-    const totalSlidesEl = document.querySelector(`[data-news-nav="${sliderId}"] .news__total-slides`);
-    
-    if (currentSlideEl && totalSlidesEl) {
-      const currentSlide = swiper.realIndex + 1;
-      const totalSlides = swiper.slides.length;
-      
-      currentSlideEl.textContent = currentSlide.toString().padStart(2, '0');
-      totalSlidesEl.textContent = totalSlides.toString().padStart(2, '0');
-    }
-  }
-
-  // Функция сброса и заполнения прогресс-бара новостей (как в hero)
-  function resetNewsProgressBar(sliderId) {
-    const progressBar = document.querySelector(`[data-news-nav="${sliderId}"] .news__slider-progress-bar`);
-    if (progressBar) {
-      // Убираем анимацию для мгновенного сброса
-      progressBar.style.transition = 'none';
-      progressBar.style.width = '0%';
-      
-      // Принудительно перерисовываем элемент
-      progressBar.offsetHeight;
-      
-      // Возвращаем плавную анимацию заполнения (3 секунды для новостей, так как нет автоплея)
-      progressBar.style.transition = 'width 3s linear';
-      
-      // Запускаем анимацию заполнения
-      setTimeout(() => {
-        progressBar.style.width = '100%';
-      }, 10);
-    }
-  }
-
-  function disable(swiperEl) {
-    const inst = instances.get(swiperEl);
-    if (inst) {
-      inst.destroy(true, true);
-      instances.delete(swiperEl);
-    }
-  }
-
-  function refresh() {
-    const width = window.innerWidth;
-    const allContainers = getAllContainers();
-    
-    // Отключаем все ранее инициализированные
-    instances.forEach((inst, el) => {
-      if (!allContainers.includes(el) || width > 768) {
-        disable(el);
-      }
-    });
-    
-    // Обрабатываем видимые контейнеры
-    allContainers.forEach(el => {
-      if (width <= 768) enable(el);
-      else disable(el);
-    });
-  }
-
-  // начальная инициализация и ресайз с дебаунсом
-  refresh();
-  window.addEventListener('resize', utils.debounce(refresh, 150));
-  
-  // Экспортируем refresh для использования в initTabs
-  window.newsSlidersRefresh = refresh;
-}
-
 // Табы (переиспользуемая инициализация)
 function initTabs() {
   const containers = document.querySelectorAll('[data-tabs]');
@@ -389,7 +249,7 @@ function initTabs() {
             if (targetPanel) {
               const swipers = targetPanel.querySelectorAll('.news__slider .swiper');
               swipers.forEach(swiperEl => {
-                const inst = (window.newsSwiperInstances && window.newsSwiperInstances.get(swiperEl));
+                const inst = window.newsSwiperInstances && window.newsSwiperInstances.get(swiperEl);
                 if (inst) {
                   inst.update();
                   inst.updateAutoHeight(200);
@@ -397,7 +257,12 @@ function initTabs() {
               });
               // Дополнительно стабилизируем высоту после обновления
               requestAnimationFrame(() => {
-                inst.updateAutoHeight(200);
+                swipers.forEach(swiperEl => {
+                  const inst = window.newsSwiperInstances && window.newsSwiperInstances.get(swiperEl);
+                  if (inst) {
+                    inst.updateAutoHeight(200);
+                  }
+                });
               });
             }
           }, 100);
@@ -450,106 +315,6 @@ function initLazyLoading() {
     images.forEach(img => {
       img.src = img.dataset.src;
     });
-  }
-}
-
-// Hero Swiper
-function initHeroSwiper() {
-  const heroSlider = document.querySelector('.hero__slider .swiper');
-  
-  if (heroSlider && typeof Swiper !== 'undefined') {
-    const heroSwiper = new Swiper(heroSlider, {
-      // Основные настройки
-      loop: true,
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-        pauseOnMouseEnter: false,
-        stopOnLastSlide: false,
-      },
-      speed: 1200,
-      effect: 'fade',
-      fadeEffect: {
-        crossFade: false
-      },
-
-      // Навигация
-      navigation: {
-        nextEl: '.hero__slider-btn--next',
-        prevEl: '.hero__slider-btn--prev',
-      },
-
-      // События
-      on: {
-        slideChange: function() {
-          updateSlideCounter(this);
-        },
-        slideChangeTransitionEnd: function() {
-          resetProgressBar();
-          console.log('Переход завершен, прогресс-бар сброшен и стартовал');
-        },
-        init: function() {
-          updateSlideCounter(this);
-          resetProgressBar();
-          // Принудительно запускаем автоплей
-          console.log('Запуск автоплея слайдера');
-          this.autoplay.start();
-        },
-        autoplayTimeLeft: function(swiper, timeLeft, percentage) {
-          // Не используем это событие, так как используем CSS анимацию
-        },
-        autoplayStart: function() {
-          console.log('Автоплей запущен');
-          // Не сбрасываем прогресс-бар здесь, так как он уже сброшен в init
-        },
-        autoplayResume: function() {
-          console.log('Автоплей возобновлен');
-        },
-        autoplayStop: function() {
-          console.log('Автоплей остановлен');
-        }
-      }
-    });
-
-    // Функция обновления счетчика слайдов
-    function updateSlideCounter(swiper) {
-      const currentSlideEl = document.querySelector('.hero__current-slide');
-      const totalSlidesEl = document.querySelector('.hero__total-slides');
-      
-      if (currentSlideEl && totalSlidesEl) {
-        const currentSlide = swiper.realIndex + 1;
-        const totalSlides = swiper.slides.length;
-        
-        currentSlideEl.textContent = currentSlide.toString().padStart(2, '0');
-        totalSlidesEl.textContent = totalSlides.toString().padStart(2, '0');
-      }
-    }
-
-    // Функция сброса прогресс-бара
-    function resetProgressBar() {
-      const progressBar = document.querySelector('.hero__slider-progress-bar');
-      if (progressBar) {
-        // Убираем анимацию для мгновенного сброса
-        progressBar.style.transition = 'none';
-        progressBar.style.width = '0%';
-        
-        // Принудительно перерисовываем элемент
-        progressBar.offsetHeight;
-        
-        // Возвращаем плавную анимацию на полное время задержки автоплея
-        progressBar.style.transition = 'width 5s linear';
-        
-        // Запускаем анимацию заполнения
-        setTimeout(() => {
-          progressBar.style.width = '100%';
-        }, 10); // Небольшая задержка для корректного запуска анимации
-        
-        console.log('Прогресс-бар сброшен в 0%, начинается заполнение за 5 секунд');
-      }
-    }
-
-  } else {
-    console.warn('Swiper не загружен или слайдер не найден');
   }
 }
 
