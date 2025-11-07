@@ -21,6 +21,16 @@ html(lang="ru")
     
     link(rel="stylesheet" href="css/main.css")
     link(rel="stylesheet" href="css/swiper.min.css")
+    //- Предзагрузка LCP-изображения hero
+    link(
+      rel="preload"
+      as="image"
+      href="images/hero/slide-1.webp"
+      imagesrcset="images/hero/slide-1-mob.webp 576w, images/hero/slide-1.webp 1440w"
+      imagesizes="(max-width: 576px) 100vw, 100vw"
+      type="image/webp"
+      fetchpriority="high"
+    )
   
   body.page-home
     include ../sections/header

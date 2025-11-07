@@ -38,15 +38,40 @@ section.hero
         .swiper-slide
           .hero__slide-content
             picture
+              source(type="image/webp" media="(max-width: 576px)" srcset="images/hero/slide-1-mob.webp")
+              source(type="image/webp" srcset="images/hero/slide-1.webp")
               source(media="(max-width: 576px)" srcset="images/hero/slide-1-mob.png")
-              img(src="images/hero/slide-1.png" alt="Фармацевтика" loading="lazy")
+              img(
+                src="images/hero/slide-1.png"
+                alt="Фармацевтика"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+                sizes="(max-width: 576px) 100vw, 100vw"
+              )
         .swiper-slide
           .hero__slide-content
             picture
+              source(type="image/webp" media="(max-width: 576px)" srcset="images/hero/slide-1-mob.webp")
+              source(type="image/webp" srcset="images/hero/slide-1.webp")
               source(media="(max-width: 576px)" srcset="images/hero/slide-1-mob.png")
-              img(src="images/hero/slide-1.png" alt="Медицинские препараты" loading="lazy")
+              img(
+                src="images/hero/slide-1.png"
+                alt="Медицинские препараты"
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 576px) 100vw, 100vw"
+              )
         .swiper-slide
           .hero__slide-content
             picture
+              source(type="image/webp" media="(max-width: 576px)" srcset="images/hero/slide-1-mob.webp")
+              source(type="image/webp" srcset="images/hero/slide-1.webp")
               source(media="(max-width: 576px)" srcset="images/hero/slide-1-mob.png")
-              img(src="images/hero/slide-1.png" alt="Доставка лекарств" loading="lazy")
+              img(
+                src="images/hero/slide-1.png"
+                alt="Доставка лекарств"
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 576px) 100vw, 100vw"
+              )
