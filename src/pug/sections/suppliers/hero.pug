@@ -4,8 +4,17 @@ section.page-suppliers
     .page-suppliers__hero-content
       h1.page-suppliers__hero-title Поставщикам
       picture.page-suppliers__hero-image
+        source(type="image/webp" media="(max-width: 576px)" srcset="images/suppliers/hero-mob.webp")
+        source(type="image/webp" srcset="images/suppliers/hero.webp")
         source(media="(max-width: 576px)" srcset="images/suppliers/hero-mob.png")
-        img(src="images/suppliers/hero.png" alt="Поставщикам" loading="lazy")
+        img(
+          src="images/suppliers/hero.png"
+          alt="Поставщикам"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          sizes="(max-width: 576px) 100vw, 100vw"
+        )
       h2.page-suppliers__hero-subtitle
         | «Органика» — надёжный канал сбыта для вашей продукции
       p.page-suppliers__hero-description       

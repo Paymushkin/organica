@@ -16,6 +16,8 @@
     <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="preload" href="fonts/Inter-VariableFont_opsz,wght.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/PT_Sans/PTSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
   </head>
   <body>
     <header class="header">
@@ -94,7 +96,9 @@
           <div class="page-suppliers__hero-content">
             <h1 class="page-suppliers__hero-title">Поставщикам</h1>
             <picture class="page-suppliers__hero-image">
-              <source media="(max-width: 576px)" srcset="images/suppliers/hero-mob.webp"><img src="images/suppliers/hero.webp" alt="Поставщикам" loading="lazy">
+              <source type="image/webp" media="(max-width: 576px)" srcset="images/suppliers/hero-mob.webp">
+              <source type="image/webp" srcset="images/suppliers/hero.webp">
+              <source media="(max-width: 576px)" srcset="images/suppliers/hero-mob.webp"><img src="images/suppliers/hero.webp" alt="Поставщикам" loading="eager" fetchpriority="high" decoding="async" sizes="(max-width: 576px) 100vw, 100vw">
             </picture>
             <h2 class="page-suppliers__hero-subtitle">«Органика» — надёжный канал сбыта для вашей продукции</h2>
             <p class="page-suppliers__hero-description">

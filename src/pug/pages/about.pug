@@ -20,6 +20,9 @@ html(lang="ru")
     link(rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png")
     
     link(rel="stylesheet" href="css/main.css")
+    //- Предзагрузка основных шрифтов
+    link(rel="preload" href="fonts/Inter-VariableFont_opsz,wght.woff2" as="font" type="font/woff2" crossorigin)
+    link(rel="preload" href="fonts/PT_Sans/PTSans-Regular.woff2" as="font" type="font/woff2" crossorigin)
     //- Предзагрузка LCP-изображения hero
     link(
       rel="preload"

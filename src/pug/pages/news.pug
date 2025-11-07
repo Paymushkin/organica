@@ -21,7 +21,10 @@ html(lang="ru")
     
     link(rel="stylesheet" href="css/main.css")
     link(rel="stylesheet" href="css/swiper.min.css")
-  
+    //- Предзагрузка основных шрифтов
+    link(rel="preload" href="fonts/Inter-VariableFont_opsz,wght.woff2" as="font" type="font/woff2" crossorigin)
+    link(rel="preload" href="fonts/PT_Sans/PTSans-Regular.woff2" as="font" type="font/woff2" crossorigin)
+      
   body
     include ../sections/header
     main.main

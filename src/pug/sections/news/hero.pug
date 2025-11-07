@@ -6,6 +6,15 @@ section.page-news
       h2.page-news__hero-description
         | Актуальные новости компании и в отрасли
       picture.page-news__hero-image
+        source(type="image/webp" media="(max-width: 576px)" srcset="images/news/hero-mob.webp")
+        source(type="image/webp" srcset="images/news/hero.webp")
         source(media="(max-width: 576px)" srcset="images/news/hero-mob.png")
-        img(src="images/news/hero.png" alt="Новости компании" loading="lazy")
+        img(
+          src="images/news/hero.png"
+          alt="Новости компании"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          sizes="(max-width: 576px) 100vw, 100vw"
+        )
 

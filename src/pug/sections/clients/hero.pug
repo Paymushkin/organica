@@ -4,8 +4,17 @@ section.page-clients
     .page-clients__hero-content
       h1.page-clients__hero-title Клиентам
       picture.page-clients__hero-image
+        source(type="image/webp" media="(max-width: 576px)" srcset="images/clients/hero-mob.webp")
+        source(type="image/webp" srcset="images/clients/hero.webp")
         source(media="(max-width: 576px)" srcset="images/clients/hero-mob.png")
-        img(src="images/clients/hero.png" alt="Клиентам" loading="lazy")
+        img(
+          src="images/clients/hero.png"
+          alt="Клиентам"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          sizes="(max-width: 576px) 100vw, 100vw"
+        )
       h2.page-clients__hero-subtitle
         | «Органика» — ваш надёжный поставщик медицинских товаров,
         | медицинской техники и товаров для детства и материнства
