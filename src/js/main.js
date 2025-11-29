@@ -192,14 +192,6 @@ function initModals() {
     // Можно показать сообщение об успехе
     // alert('Заявка успешно отправлена!');
     
-    // Если форма в попапе - закрываем попап
-    if (modalForm) {
-      const modal = form.closest('.modal');
-      if (modal) {
-        closeModal(modal);
-      }
-    }
-    
     // Сбрасываем класс валидации и форму
     form.classList.remove('was-validated');
     form.reset();

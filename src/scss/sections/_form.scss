@@ -171,7 +171,7 @@
 .request-form__checkbox > input:checked + span::before {
   background: var(--color-primary);
   border-color: var(--color-primary);
-  background-image: url("data:image/svg+xml,%3Csvg width='16' height='12' viewBox='0 0 16 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.5 6.5L6 11L14.5 1' stroke='%230E1A14' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-image: url('../images/icons/check.svg');
   background-repeat: no-repeat;
   background-position: center;
 }

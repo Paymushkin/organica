@@ -18,11 +18,23 @@
             span.mobile-menu__nav-text Главная
         
         li.mobile-menu__nav-item
+          a.mobile-menu__nav-link(href="/about")
+            span.mobile-menu__nav-icon
+              //- include ../icons/icon-about
+            span.mobile-menu__nav-text О нас
+        
+        li.mobile-menu__nav-item
           a.mobile-menu__nav-link(href="/suppliers")
             span.mobile-menu__nav-icon
               include ../icons/icon-supplier
             span.mobile-menu__nav-text Поставщикам
         
+        li.mobile-menu__nav-item
+          a.mobile-menu__nav-link(href="/career")
+            span.mobile-menu__nav-icon
+              //- include ../icons/icon-career
+            span.mobile-menu__nav-text Карьера
+
         li.mobile-menu__nav-item
           a.mobile-menu__nav-link(href="/clients")
             span.mobile-menu__nav-icon
